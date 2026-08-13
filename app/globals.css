@@ -87,3 +87,22 @@ body {
   h1, h2, h3, p, li { color: #111827 !important; }
   a { color: #111827 !important; text-decoration: none !important; }
 }
+
+/* Editorial AI outcomes: preserve the transition from the previous section and let the image fill its full column. */
+section[aria-labelledby="ai-outcomes-title"] {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+section[aria-labelledby="ai-outcomes-title"] > div > div:last-child > div {
+  position: relative !important;
+  top: auto !important;
+  height: 100% !important;
+  min-height: 100% !important;
+}
+
+@media (min-width: 1024px) {
+  section[aria-labelledby="ai-outcomes-title"] {
+    padding-top: 0 !important;
+  }
+}
