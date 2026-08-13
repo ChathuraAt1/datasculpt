@@ -1,0 +1,70 @@
+name: Build and deploy static site
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: static-deploy-production
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build Next.js static export
+        run: npm run build
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y lftp
+
+      - name: Deploy out over FTPS
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_PORT: ${{ secrets.FTP_PORT || '21' }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR || '/' }}
+        run: |
+          set -eu
+
+          : "${FTP_HOST:?FTP_HOST secret is required}"
+          : "${FTP_USERNAME:?FTP_USERNAME secret is required}"
+          : "${FTP_PASSWORD:?FTP_PASSWORD secret is required}"
+          : "${FTP_REMOTE_DIR:?FTP_REMOTE_DIR secret is required}"
+
+          lftp -u "$FTP_USERNAME,$FTP_PASSWORD" -p "$FTP_PORT" "$FTP_HOST" \
+            -e "set cmd:fail-exit yes; \
+                set ftp:passive-mode true; \
+                set ftp:ssl-force true; \
+                set ftp:ssl-protect-data true; \
+                set ssl:verify-certificate true; \
+                set net:timeout 30; \
+                set net:max-retries 2; \
+                set net:reconnect-interval-base 5; \
+                mirror --reverse --delete --verbose --parallel=2 \
+                  --exclude-glob .env \
+                  --exclude-glob 'storage/***' \
+                  out \"$FTP_REMOTE_DIR\"; \
+                bye"
