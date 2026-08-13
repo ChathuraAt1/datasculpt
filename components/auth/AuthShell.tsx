@@ -1,0 +1,21 @@
+'use client';
+
+import type { ReactNode } from 'react';
+import Link from 'next/link';
+import { Github, Globe2, LockKeyhole } from 'lucide-react';
+import { apiBaseUrl } from '@/lib/auth';
+
+export function AuthShell({ eyebrow, title, description, children }: { eyebrow: string; title: string; description: string; children: ReactNode }) {
+  return <div className="mx-auto flex min-h-[calc(100vh-160px)] max-w-7xl items-center justify-center px-5 py-12 lg:px-8"><div className="grid w-full max-w-5xl gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-center"><div className="hidden lg:block"><p className="eyebrow">DATASCULPT ACCESS</p><h1 className="mt-5 text-5xl font-semibold leading-tight tracking-[-0.04em] text-white">The operating surface for <span className="bg-gradient-to-r from-brand-200 via-brand-400 to-brand-300 bg-clip-text text-transparent">trusted data.</span></h1><p className="mt-6 max-w-md text-base leading-7 text-slate-400">Securely access your enterprise data engineering workspace, subscription controls, and platform workflows.</p><div className="mt-8 flex items-center gap-3 text-xs text-slate-500"><LockKeyhole size={15} className="text-brand-300" />Bearer-token access with browser-safe session recovery</div></div><div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-[0_0_30px_rgba(234,179,8,0.08)] backdrop-blur-xl sm:p-8"><div className="mb-7"><p className="eyebrow">{eyebrow}</p><h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">{title}</h2><p className="mt-3 text-sm leading-6 text-slate-400">{description}</p></div>{children}</div></div></div>;
+}
+
+export function OAuthButtons() {
+  const base = apiBaseUrl();
+  return <div className="grid gap-3 sm:grid-cols-2"><a href={base ? `${base}/api/auth/google/redirect` : undefined} aria-disabled={!base} className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:border-brand-500/60 hover:text-brand-200 aria-disabled:pointer-events-none aria-disabled:opacity-50"><Globe2 size={16} />Continue with Google</a><a href={base ? `${base}/api/auth/github/redirect` : undefined} aria-disabled={!base} className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:border-brand-500/60 hover:text-brand-200 aria-disabled:pointer-events-none aria-disabled:opacity-50"><Github size={16} />Continue with GitHub</a></div>;
+}
+
+export function AuthDivider() { return <div className="my-6 flex items-center gap-3 text-[0.65rem] font-mono uppercase tracking-[0.18em] text-slate-600"><span className="h-px flex-1 bg-slate-800" />or continue with email<span className="h-px flex-1 bg-slate-800" /></div>; }
+export function AuthField({ label, name, type = 'text', value, onChange, placeholder, autoComplete, required = true }: { label: string; name: string; type?: string; value: string; onChange: (value: string) => void; placeholder?: string; autoComplete?: string; required?: boolean }) { return <label className="block text-sm text-slate-300">{label}{required && <span className="ml-1 text-brand-400">*</span>}<input required={required} name={name} type={type} value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} autoComplete={autoComplete} className="mt-2 w-full rounded-lg border border-slate-800 bg-slate-950/80 px-3.5 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-brand-400 focus:ring-1 focus:ring-brand-400" /></label>; }
+export function AuthMessage({ children, error = false }: { children: ReactNode; error?: boolean }) { return <div role={error ? 'alert' : 'status'} className={`rounded-lg border p-3 text-sm leading-6 ${error ? 'border-brand-500/40 bg-brand-950/30 text-brand-200' : 'border-brand-500/30 bg-brand-950/30 text-brand-300'}`}>{children}</div>; }
+export function AuthLinks({ signup = false }: { signup?: boolean }) { return <p className="mt-6 text-center text-sm text-slate-500">{signup ? 'Already have an account?' : 'New to DataSculpt?'} <Link href={signup ? '/auth/login/' : '/auth/signup/'} className="font-semibold text-brand-300 hover:text-brand-200">{signup ? 'Sign in' : 'Create an account'}</Link></p>; }
+

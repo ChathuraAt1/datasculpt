@@ -1,0 +1,15 @@
+'use client';
+
+import { FormEvent, useEffect, useState } from 'react';
+import Link from 'next/link';
+import { ArrowLeft, KeyRound } from 'lucide-react';
+import { AuthField, AuthMessage, AuthShell } from '@/components/auth/AuthShell';
+import { authRequest, errorMessage, sha256 } from '@/lib/auth';
+
+export default function ResetPasswordPage() {
+  const [email, setEmail] = useState(''); const [token, setToken] = useState(''); const [password, setPassword] = useState(''); const [confirmation, setConfirmation] = useState(''); const [error, setError] = useState(''); const [message, setMessage] = useState(''); const [submitting, setSubmitting] = useState(false);
+  useEffect(() => { const params = new URLSearchParams(window.location.search); setEmail(params.get('email') || ''); setToken(params.get('token') || ''); }, []);
+  async function submit(event: FormEvent<HTMLFormElement>) { event.preventDefault(); setError(''); setMessage(''); if (!token) { setError('This reset link is missing its token. Request a new one.'); return; } if (password.length < 8 || password !== confirmation) { setError(password.length < 8 ? 'Use at least 8 characters for your password.' : 'Passwords do not match.'); return; } setSubmitting(true); try { const hash = await sha256(password); const envelope = await authRequest('/api/auth/password/reset', { method: 'POST', body: JSON.stringify({ email, token, password_hash: hash, password_hash_confirmation: hash }) }); setMessage(typeof envelope.message === 'string' ? envelope.message : 'Password reset successfully.'); } catch (submissionError) { setError(errorMessage(submissionError, 'This reset link may be invalid or expired.')); } finally { setSubmitting(false); } }
+  return <AuthShell eyebrow="SECURE PASSWORD RESET" title="Set a new password." description="Choose a new password for your DataSculpt account. The password is hashed in the browser before submission.">{error && <div className="mb-5"><AuthMessage error>{error}</AuthMessage></div>}{message && <div className="mb-5"><AuthMessage>{message} <Link href="/auth/login/" className="font-semibold underline">Sign in</Link></AuthMessage></div>}<form onSubmit={submit} className="space-y-5"><AuthField label="Account email" name="email" type="email" value={email} onChange={setEmail} autoComplete="email" /><AuthField label="New password" name="password" type="password" value={password} onChange={setPassword} autoComplete="new-password" /><AuthField label="Confirm new password" name="confirmation" type="password" value={confirmation} onChange={setConfirmation} autoComplete="new-password" /><button type="submit" disabled={submitting} className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-brand-300/70 bg-brand-500 px-4 py-3 text-sm font-semibold text-slate-950 shadow-brand transition hover:bg-brand-300 disabled:cursor-wait disabled:opacity-70">{submitting ? 'Updating password…' : 'Update password'}<KeyRound size={16} /></button></form><Link href="/auth/login/" className="mt-6 flex items-center justify-center gap-2 text-sm text-slate-500 hover:text-brand-300"><ArrowLeft size={14} />Back to sign in</Link></AuthShell>;
+}
+
