@@ -27,7 +27,7 @@ export const TOKEN_KEY = 'datasculpt_token';
 const USER_KEY = 'datasculpt_user';
 
 export function apiBaseUrl() {
-  return process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/$/, '') || '';
+  return process.env.NEXT_PUBLIC_API_BASE_URL?.trim().replace(/^['"]|['"]$/g, '').replace(/\/$/, '') || '';
 }
 
 export function storedToken() {
@@ -88,4 +88,3 @@ export function errorMessage(error: unknown, fallback = 'Something went wrong. P
 export function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null;
 }
-
