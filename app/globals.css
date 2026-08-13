@@ -35,3 +35,13 @@ body {
     @apply font-mono text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-brand-300;
   }
 }
+
+@media print {
+  body { background: white !important; color: #111827 !important; }
+  .no-print, header, footer { display: none !important; }
+  main { background: white !important; overflow: visible !important; }
+  main > div:first-child { background: none !important; display: block !important; }
+  .glass-panel { border: 1px solid #d1d5db !important; background: white !important; box-shadow: none !important; }
+  h1, h2, h3, p, li { color: #111827 !important; }
+  a { color: #111827 !important; text-decoration: none !important; }
+}
