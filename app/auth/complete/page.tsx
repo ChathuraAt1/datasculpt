@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { LoaderCircle, ShieldAlert } from 'lucide-react';
 import { AuthMessage, AuthShell } from '@/components/auth/AuthShell';
 import { useAuth } from '@/components/auth/AuthContext';
-import { authRequest, clearAuth, errorMessage, extractUser, persistAuth } from '@/lib/auth';
+import { authRequest, clearAuth, errorMessage, extractUser, persistAuth, storedToken } from '@/lib/auth';
 
 const ACCOUNT_PATH = '/account/';
 const CALLBACK_PATH = '/auth/complete/';
@@ -19,7 +19,8 @@ export default function AuthCompletePage() {
 
     async function completeAuthentication() {
       const params = new URLSearchParams(window.location.search);
-      const token = params.get('token');
+      const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+      const token = params.get('token') || hashParams.get('token') || storedToken();
 
       // Remove the sensitive OAuth token before making any API request or redirect.
       window.history.replaceState({}, document.title, CALLBACK_PATH);
