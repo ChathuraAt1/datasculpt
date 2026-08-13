@@ -35,7 +35,7 @@ export function Navbar() {
 
   useEffect(() => { setMenuOpen(false); }, [pathname]);
 
-  return <header className="relative z-30 border-b border-slate-800/70 bg-slate-950/80 backdrop-blur-xl">
+  return <header className="sticky top-0 z-50 border-b border-slate-800/70 bg-slate-950/80 backdrop-blur-xl shadow-[0_8px_30px_rgba(154,101,0,0.08)]">
     <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
       <Link href="/" className="group flex shrink-0 items-center gap-2.5" aria-label="DataSculpt home">
         <span className="relative grid h-9 w-9 place-items-center rounded-lg border border-brand-400/50 bg-brand-400/10 text-brand-300 shadow-brand transition group-hover:border-brand-300">

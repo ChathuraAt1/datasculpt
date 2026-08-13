@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: dark; }
+:root { color-scheme: light; }
 
 * { box-sizing: border-box; }
 
@@ -10,17 +10,17 @@ html { scroll-behavior: smooth; }
 
 body {
   min-width: 320px;
-  background: #020617;
-  color: #e2e8f0;
+  background: #fffdf2;
+  color: #334155;
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-::selection { background: rgb(234 179 8 / 0.35); color: #fefce8; }
+::selection { background: rgb(234 179 8 / 0.4); color: #3d2500; }
 
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .grid-fade {
-    background-image: linear-gradient(to right, rgb(234 179 8 / 0.18) 1px, transparent 1px), linear-gradient(to bottom, rgb(234 179 8 / 0.18) 1px, transparent 1px);
+    background-image: linear-gradient(to right, rgb(183 121 0 / 0.13) 1px, transparent 1px), linear-gradient(to bottom, rgb(183 121 0 / 0.13) 1px, transparent 1px);
     background-size: 4rem 4rem;
     mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
   }
@@ -28,12 +28,54 @@ body {
 
 @layer components {
   .glass-panel {
-    @apply border border-slate-800/90 bg-slate-900/70 backdrop-blur-xl;
+    @apply border border-brand-100/90 bg-white/80 backdrop-blur-xl;
   }
 
   .eyebrow {
-    @apply font-mono text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-brand-300;
+    @apply font-mono text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-brand-500;
   }
+}
+
+/* Light yellow mode compatibility layer for existing page-level utility classes. */
+@layer utilities {
+  .bg-slate-950 { background-color: #fffdf2 !important; }
+  .bg-slate-900 { background-color: #fffef8 !important; }
+  .bg-slate-800 { background-color: #f5eed6 !important; }
+  .bg-slate-950\/60 { background-color: rgb(255 253 242 / 0.78) !important; }
+  .bg-slate-950\/10 { background-color: rgb(255 253 242 / 0.4) !important; }
+  .bg-slate-950\/70 { background-color: rgb(255 253 242 / 0.84) !important; }
+  .bg-slate-950\/80 { background-color: rgb(255 253 242 / 0.9) !important; }
+  .bg-slate-950\/95 { background-color: rgb(255 253 242 / 0.98) !important; }
+  .bg-slate-800\/80 { background-color: rgb(245 238 214 / 0.86) !important; }
+  .bg-slate-900\/50 { background-color: rgb(255 254 248 / 0.72) !important; }
+  .bg-slate-900\/45 { background-color: rgb(255 254 248 / 0.7) !important; }
+  .bg-slate-900\/60 { background-color: rgb(255 254 248 / 0.76) !important; }
+  .bg-slate-900\/70 { background-color: rgb(255 254 248 / 0.8) !important; }
+  .bg-slate-900\/80 { background-color: rgb(255 254 248 / 0.88) !important; }
+  .bg-slate-900\/90 { background-color: rgb(255 254 248 / 0.94) !important; }
+  .bg-slate-950\/90 { background-color: rgb(255 253 242 / 0.94) !important; }
+  .bg-brand-950\/20, .bg-brand-950\/30, .bg-brand-950\/40 { background-color: rgb(255 232 130 / 0.28) !important; }
+  .bg-brand-900\/30 { background-color: rgb(255 232 130 / 0.36) !important; }
+  .bg-brand-800\/40 { background-color: rgb(255 232 130 / 0.46) !important; }
+  .bg-brand-500\/10, .bg-brand-400\/10 { background-color: rgb(234 179 8 / 0.13) !important; }
+  .bg-brand-500\/20, .bg-brand-500\/30, .bg-brand-500\/50, .bg-brand-500\/60 { background-color: rgb(234 179 8 / 0.18) !important; }
+  .border-slate-700, .border-slate-800, .border-slate-800\/70, .border-slate-800\/80, .border-slate-800\/90 { border-color: #e7dfc7 !important; }
+  .divide-slate-800 > :not([hidden]) ~ :not([hidden]) { border-color: #e7dfc7 !important; }
+  .text-white { color: #1f2937 !important; }
+  .text-slate-100 { color: #334155 !important; }
+  .text-slate-200 { color: #334155 !important; }
+  .text-slate-300 { color: #475569 !important; }
+  .text-slate-400 { color: #64748b !important; }
+  .text-slate-500 { color: #7c8798 !important; }
+  .text-slate-600 { color: #9aa3b2 !important; }
+  .text-slate-700, .text-slate-800 { color: #64748b !important; }
+  .text-slate-950 { color: #2d2105 !important; }
+  .text-brand-200 { color: #805200 !important; }
+  .text-brand-300 { color: #9a6500 !important; }
+  .text-brand-400, .text-brand-500 { color: #805200 !important; }
+  [class*="from-brand-200"] { --tw-gradient-from: #805200 var(--tw-gradient-from-position) !important; }
+  [class*="via-brand-400"] { --tw-gradient-to: rgb(183 121 0 / 0) var(--tw-gradient-to-position) !important; --tw-gradient-stops: var(--tw-gradient-from), #b77900 var(--tw-gradient-via-position), var(--tw-gradient-to) !important; }
+  [class*="to-brand-300"] { --tw-gradient-to: #9a6500 var(--tw-gradient-to-position) !important; }
 }
 
 @media print {
