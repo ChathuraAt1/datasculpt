@@ -7,7 +7,7 @@ const links = [
   { label: 'Architecture', href: '/architecture/' },
   { label: 'Operations', href: '#operations' },
   { label: 'Documentation', href: '#documentation' },
-  { label: 'Pricing', href: '#pricing' },
+  { label: 'Pricing', href: '/pricing/' },
 ];
 
 export function Navbar() {
