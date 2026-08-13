@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowUpRight, Globe2, Radio, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, Globe2, Radio } from 'lucide-react';
 
 const platformLinks = [
   ['Products', '/products/'],
@@ -26,7 +26,7 @@ export function Footer() {
           <p className="mt-6 max-w-md text-sm leading-6 text-slate-400">A focused operating layer for high-throughput ingestion, transformation, quality, and AI-ready data workflows.</p>
           <Link href="/products/" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-300 transition hover:text-brand-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300">Explore the platform <ArrowUpRight size={15} /></Link>
         </div>
-        <div className="rounded-xl border border-brand-500/25 bg-brand-950/20 p-5"><div className="flex items-center justify-between gap-3"><p className="eyebrow">OPERATING REFERENCE</p><span className="h-2 w-2 animate-pulse rounded-full bg-brand-300 shadow-[0_0_12px_rgba(234,179,8,0.65)]" /></div><p className="mt-4 text-lg font-semibold text-white">System Online</p><p className="mt-2 font-mono text-xs text-slate-500">US East / Colombo Nodes</p><div className="mt-5 flex items-center gap-2 text-xs text-brand-300"><ShieldCheck size={14} />Enterprise-ready operating model</div></div>
+        <div className="rounded-xl border border-brand-500/25 bg-brand-950/20 p-5"><p className="eyebrow">FOR WHAT COMES NEXT</p><p className="mt-4 text-lg font-semibold text-white">A clearer foundation for every next step.</p><p className="mt-3 text-sm leading-6 text-slate-400">DataSculpt helps teams make more of the information they already have.</p><Link href="/products/" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-300 transition hover:text-brand-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300">See the platform <ArrowUpRight size={15} /></Link></div>
       </div>
 
       <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

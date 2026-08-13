@@ -28,10 +28,4 @@ export const testimonials = [
   { name: 'Sofia Laurent', role: 'Product Strategy Lead', company: '', image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=160&q=80', challenge: 'Business teams needed answers without waiting for another preparation cycle.', transformation: 'More usable information helped product and leadership teams move from questions to action with greater confidence.', quote: 'We spend less time debating which version is right and more time deciding what to do next.' },
 ] as const;
 
-export const audiences = [
-  ['Data engineering teams', 'Spend less time untangling preparation work and more time building the systems your business needs.'],
-  ['AI and analytics teams', 'Start with cleaner, better-prepared data so experiments can become useful products.'],
-  ['Enterprise decision makers', 'Create a dependable foundation for confident reporting, planning, and intelligent automation.'],
-] as const;
-
 export const stageIcons = [Database, Layers3, ShieldCheck, Sparkles] as const;
