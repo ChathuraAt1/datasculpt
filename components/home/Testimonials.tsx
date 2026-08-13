@@ -1,38 +1,34 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, BrainCircuit } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { testimonials } from './homeData';
 import { Reveal } from './Reveal';
 
-type Position = 'center' | 'left' | 'right' | 'hidden';
-
-function positionFor(index: number, active: number): Position {
-  const offset = (index - active + testimonials.length) % testimonials.length;
-  if (offset === 0) return 'center';
-  if (offset === 1) return 'right';
-  if (offset === testimonials.length - 1) return 'left';
-  return 'hidden';
-}
-
 export function Testimonials() {
   const reducedMotion = useReducedMotion();
   const [active, setActive] = useState(0);
+  const [direction, setDirection] = useState(1);
   const previous = (active - 1 + testimonials.length) % testimonials.length;
   const next = (active + 1) % testimonials.length;
-  const selectStory = (index: number) => setActive((index + testimonials.length) % testimonials.length);
+  const select = (index: number, nextDirection: number) => { setDirection(nextDirection); setActive((index + testimonials.length) % testimonials.length); };
+  const transition = { duration: reducedMotion ? 0 : 0.42, ease: [0.22, 1, 0.36, 1] as const };
 
-  return <section aria-labelledby="customer-stories-title" className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28"><div className="mb-10 max-w-2xl"><Reveal><p className="eyebrow">THE OUTCOME PEOPLE REMEMBER</p><h2 id="customer-stories-title" className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Trusted data creates confident action.</h2><p className="mt-4 text-base leading-7 text-slate-500">Illustrative customer stories showing the kinds of change DataSculpt is designed to support.</p></Reveal></div><div className="rounded-[2rem] border border-brand-100 bg-brand-50/55 p-5 sm:p-8 lg:p-10"><div className="relative h-[500px] overflow-hidden md:h-[450px]" aria-live="polite"><div className="absolute inset-0 flex items-center justify-center"><div className="relative h-[390px] w-full max-w-5xl">{testimonials.map((item, index) => { const position = positionFor(index, active); const isCenter = position === 'center'; const isHidden = position === 'hidden'; return <motion.div key={item.role} initial={false} animate={reducedMotion ? { x: 0, y: isCenter ? 0 : 30, scale: isCenter ? 1 : 0.94, opacity: isCenter ? 1 : 0 } : position === 'center' ? { x: 0, y: 0, scale: 1, opacity: 1 } : position === 'left' ? { x: -330, y: 24, scale: 0.78, opacity: 0.7 } : position === 'right' ? { x: 330, y: 24, scale: 0.78, opacity: 0.7 } : { x: 0, y: 70, scale: 0.68, opacity: 0 } } transition={{ duration: reducedMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }} className={`absolute left-1/2 top-1/2 w-[min(100%,28rem)] -translate-x-1/2 -translate-y-1/2 ${isHidden ? 'pointer-events-none' : ''} ${isCenter ? 'z-20' : 'z-10'} ${!isCenter ? 'hidden md:block' : ''}`} aria-hidden={isHidden}><TestimonialCard item={item} featured={isCenter} onSelect={() => selectStory(index)} /></motion.div>; })}</div></div><div className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-3 md:hidden"><NavigationButton direction="previous" onClick={() => selectStory(previous)} /><span className="font-mono text-xs text-brand-700">{String(active + 1).padStart(2, '0')} / {String(testimonials.length).padStart(2, '0')}</span><NavigationButton direction="next" onClick={() => selectStory(next)} /></div></div><div className="mt-4 hidden items-center justify-center gap-4 md:flex"><NavigationButton direction="previous" onClick={() => selectStory(previous)} /><span className="font-mono text-xs text-brand-700">{String(active + 1).padStart(2, '0')} / {String(testimonials.length).padStart(2, '0')}</span><NavigationButton direction="next" onClick={() => selectStory(next)} /></div></div></section>;
+  return <section aria-labelledby="customer-stories-title" className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28"><div className="mb-10 max-w-2xl"><Reveal><p className="eyebrow">THE OUTCOME PEOPLE REMEMBER</p><h2 id="customer-stories-title" className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Trusted data creates confident action.</h2><p className="mt-4 text-base leading-7 text-slate-500">Illustrative customer stories showing the kinds of change DataSculpt is designed to support.</p></Reveal></div><div className="rounded-[2rem] border border-brand-100 bg-brand-50/55 p-5 sm:p-8 lg:p-10"><div className="grid min-h-[520px] items-center gap-5 lg:grid-cols-[0.8fr_1.3fr_0.8fr] lg:gap-8" aria-live="polite"><AnimatedStory keyName={`left-${testimonials[previous].name}`} item={testimonials[previous]} mode="side" onSelect={() => select(previous, -1)} transition={transition} reducedMotion={reducedMotion} direction={direction} /><AnimatedStory keyName={`center-${testimonials[active].name}`} item={testimonials[active]} mode="featured" transition={transition} reducedMotion={reducedMotion} direction={direction} /><AnimatedStory keyName={`right-${testimonials[next].name}`} item={testimonials[next]} mode="side" onSelect={() => select(next, 1)} transition={transition} reducedMotion={reducedMotion} direction={direction} /></div><div className="mt-6 flex items-center justify-center gap-4"><NavButton label="Show previous testimonial" onClick={() => select(previous, -1)} icon={<ArrowLeft size={16} />} /><span className="font-mono text-xs text-brand-700">{String(active + 1).padStart(2, '0')} / {String(testimonials.length).padStart(2, '0')}</span><NavButton label="Show next testimonial" onClick={() => select(next, 1)} icon={<ArrowRight size={16} />} /></div></div></section>;
 }
 
-function NavigationButton({ direction, onClick }: { direction: 'previous' | 'next'; onClick: () => void }) {
-  const Icon = direction === 'previous' ? ArrowLeft : ArrowRight;
-  return <button type="button" onClick={onClick} className="grid h-10 w-10 place-items-center rounded-full border border-brand-200 bg-white/80 text-brand-700 transition hover:border-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400" aria-label={`Show ${direction} testimonial`}><Icon size={16} /></button>;
+function AnimatedStory({ item, mode, onSelect, transition, reducedMotion, keyName, direction }: { item: (typeof testimonials)[number]; mode: 'featured' | 'side'; onSelect?: () => void; transition: { duration: number; ease: readonly [number, number, number, number] }; reducedMotion: boolean | null; keyName: string; direction: number }) {
+  const featured = mode === 'featured';
+  return <AnimatePresence mode="popLayout" initial={false}><motion.div key={keyName} layout initial={{ opacity: 0, x: reducedMotion ? 0 : featured ? direction * 28 : -direction * 18, scale: reducedMotion ? 1 : 0.96 }} animate={{ opacity: 1, x: 0, scale: 1 }} exit={{ opacity: 0, x: reducedMotion ? 0 : featured ? -direction * 28 : direction * 18, scale: reducedMotion ? 1 : 0.96 }} transition={transition} className="w-full"><StoryCard item={item} featured={featured} onSelect={onSelect} /></motion.div></AnimatePresence>;
 }
 
-function TestimonialCard({ item, featured, onSelect }: { item: (typeof testimonials)[number]; featured: boolean; onSelect: () => void }) {
-  const content = <><span className={`mx-auto grid place-items-center rounded-2xl ${featured ? 'h-14 w-14 bg-brand-400 text-slate-950' : 'h-11 w-11 bg-brand-100 text-brand-600'}`}><BrainCircuit size={featured ? 28 : 20} /></span><p className="mt-5 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-brand-600">{item.role}</p><h3 className={`${featured ? 'mt-4 text-2xl' : 'mt-3 text-base'} font-semibold text-slate-800`}>{item.challenge}</h3>{featured && <><p className="mt-4 text-sm leading-6 text-slate-500">{item.transformation}</p><blockquote className="mt-5 border-t border-brand-100 pt-5 text-base font-medium leading-7 text-slate-700">“{item.quote}”</blockquote></>}</>;
-  if (featured) return <article className="rounded-3xl border border-brand-300/80 bg-white/95 p-6 text-center shadow-brand sm:p-8" aria-current="true">{content}</article>;
-  return <button type="button" onClick={onSelect} aria-label={`Show ${item.role}`} className="w-full rounded-3xl border border-brand-100 bg-white/75 p-5 text-center opacity-75 shadow-panel transition hover:border-brand-400 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400">{content}</button>;
+function StoryCard({ item, featured, onSelect }: { item: (typeof testimonials)[number]; featured: boolean; onSelect?: () => void }) {
+  const content = <><div className="flex items-center gap-3 text-left"><img src={item.image} alt="" className={`${featured ? 'h-14 w-14' : 'h-11 w-11'} rounded-full object-cover ring-2 ring-brand-200`} loading="lazy" /><span><span className="block text-sm font-semibold text-slate-800">{item.name}</span><span className="mt-1 block text-xs text-brand-700">{item.role}</span>{item.company && <span className="mt-1 block text-xs text-slate-500">{item.company}</span>}</span></div><p className={`${featured ? 'mt-7 text-xl' : 'mt-5 text-sm'} text-left font-semibold leading-7 text-slate-800`}>{item.challenge}</p>{featured && <><p className="mt-4 text-left text-sm leading-6 text-slate-500">{item.transformation}</p><blockquote className="mt-6 border-t border-brand-100 pt-5 text-left text-base font-medium leading-7 text-slate-700">“{item.quote}”</blockquote><p className="mt-5 text-left font-mono text-[0.62rem] uppercase tracking-[0.16em] text-brand-600">Illustrative customer story</p></>}{!featured && <p className="mt-4 text-left text-xs leading-5 text-slate-500">Click to feature this story</p>}</>;
+  if (!featured) return <motion.button type="button" onClick={onSelect} whileHover={{ y: -5 }} transition={{ duration: 0.2 }} className="w-full rounded-3xl border border-brand-100 bg-white/75 p-5 shadow-panel transition hover:border-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400">{content}</motion.button>;
+  return <article className="rounded-3xl border border-brand-300/80 bg-white/95 p-6 shadow-brand sm:p-8">{content}</article>;
+}
+
+function NavButton({ label, onClick, icon }: { label: string; onClick: () => void; icon: React.ReactNode }) {
+  return <button type="button" onClick={onClick} aria-label={label} className="grid h-10 w-10 place-items-center rounded-full border border-brand-200 bg-white/80 text-brand-700 transition hover:border-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400">{icon}</button>;
 }
