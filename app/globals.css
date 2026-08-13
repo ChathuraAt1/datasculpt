@@ -10,7 +10,7 @@ html { scroll-behavior: smooth; }
 
 body {
   min-width: 320px;
-  background: #fffdf2;
+  background: #f5f5f1;
   color: #334155;
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }

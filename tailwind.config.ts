@@ -5,13 +5,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        midnight: '#fff9df',
-        ink: '#fffdf2',
-        panel: '#fffef8',
-        line: '#e7dfc7',
+        midnight: '#f7f6f0',
+        ink: '#fbfaf5',
+        panel: '#ffffff',
+        line: '#deded7',
         brand: {
-          50: '#fffef3',
-          100: '#fff8c4',
+          50: '#fafaf7',
+          100: '#eeeadd',
           200: '#f9df70',
           300: '#c99000',
           400: '#b77900',

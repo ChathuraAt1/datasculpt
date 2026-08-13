@@ -15,8 +15,8 @@ export function Hero() {
   const linesRotate = useTransform(scrollYProgress, [0, 1], reducedMotion ? [0, 0] : [0, 4]);
   const glowOpacity = useTransform(scrollYProgress, [0, 0.55, 1], reducedMotion ? [0.12, 0.12, 0.12] : [0.06, 0.34, 0.55]);
 
-  return <section ref={heroRef} className="relative isolate min-h-[calc(100svh-4.5rem)] overflow-hidden bg-[#fffdf2] lg:min-h-[calc(100dvh-4.5rem)]" aria-labelledby="hero-title">
-    <div className="absolute inset-0 bg-gradient-to-b from-[#fffdf2] via-[#fffdf2]/70 to-brand-100/60" aria-hidden="true" />
+  return <section ref={heroRef} className="relative isolate min-h-[calc(100svh-4.5rem)] overflow-hidden bg-[#f5f5f1] lg:min-h-[calc(100dvh-4.5rem)]" aria-labelledby="hero-title">
+    <div className="absolute inset-0 bg-gradient-to-b from-[#f5f5f1] via-[#f5f5f1]/75 to-brand-100/60" aria-hidden="true" />
     <motion.div style={{ opacity: glowOpacity }} className="pointer-events-none absolute inset-x-0 bottom-0 h-[62%] bg-[radial-gradient(ellipse_at_50%_100%,rgba(234,179,8,0.72),rgba(255,248,196,0.3)_38%,transparent_72%)]" aria-hidden="true" />
     <motion.div style={{ y: imageY, scale: imageScale }} className="pointer-events-none absolute inset-x-0 bottom-[-5%] h-[72%] origin-bottom bg-[url('/visuals/data-landscape.svg')] bg-[length:100%_auto] bg-no-repeat bg-[center_top] opacity-95" aria-hidden="true" />
     <motion.div style={{ y: linesY, rotate: linesRotate }} className="pointer-events-none absolute inset-0 origin-center opacity-55" aria-hidden="true"><div className="absolute inset-0 bg-[linear-gradient(118deg,transparent_9%,rgba(154,101,0,0.17)_9.15%,transparent_9.3%,transparent_30%,rgba(154,101,0,0.15)_30.15%,transparent_30.3%,transparent_52%,rgba(154,101,0,0.17)_52.15%,transparent_52.3%,transparent_76%,rgba(154,101,0,0.15)_76.15%,transparent_76.3%),linear-gradient(24deg,transparent_13%,rgba(183,121,0,0.16)_13.15%,transparent_13.3%,transparent_39%,rgba(183,121,0,0.14)_39.15%,transparent_39.3%,transparent_68%,rgba(183,121,0,0.16)_68.15%,transparent_68.3%)]" /></motion.div>
