@@ -19,7 +19,7 @@ export function AccessNotice({ entitlement, children }: { entitlement: ModuleEnt
 }
 
 export function WorkspaceButton({ children, disabled = false, onClick, type = 'button', className = '' }: { children: React.ReactNode; disabled?: boolean; onClick?: () => void; type?: 'button' | 'submit'; className?: string }) {
-  return <button type={type} disabled={disabled} onClick={onClick} className={`inline-flex items-center justify-center gap-2 rounded-xl border border-brand-500 bg-brand-500 px-4 py-2.5 text-sm font-semibold text-[#211b0d] shadow-[0_8px_22px_rgba(154,101,0,0.13)] transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:border-[#ddd6c5] disabled:bg-[#ece8dd] disabled:text-[#938d7e] disabled:shadow-none ${className}`}>{children}</button>;
+  return <button type={type} disabled={disabled} onClick={onClick} className={`inline-flex items-center justify-center gap-2 rounded-xl border border-brand-500 bg-brand-500 px-4 py-2.5 text-sm font-semibold text-slate-50 shadow-[0_8px_22px_rgba(154,101,0,0.13)] transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:border-[#ddd6c5] disabled:bg-[#ece8dd] disabled:text-[#938d7e] disabled:shadow-none ${className}`}>{children}</button>;
 }
 
 export function SelectField({ label, value, onChange, options, disabled = false }: { label: string; value: string; onChange: (value: string) => void; options: { value: string; label: string }[]; disabled?: boolean }) {

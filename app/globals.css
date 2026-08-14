@@ -36,6 +36,16 @@ body {
   }
 }
 
+/* Solid gold actions always use light text, including direct page-level buttons. */
+:is(button, a).bg-brand-400,
+:is(button, a).bg-brand-500,
+:is(button, a).bg-brand-600,
+:is(button, a).bg-brand-400 *,
+:is(button, a).bg-brand-500 *,
+:is(button, a).bg-brand-600 * {
+  color: #f8fafc !important;
+}
+
 /* Light yellow mode compatibility layer for existing page-level utility classes. */
 @layer utilities {
   .bg-slate-950 { background-color: #fffdf2 !important; }

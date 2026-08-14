@@ -9,7 +9,7 @@ type ButtonProps = {
 };
 
 const variants = {
-  primary: 'border border-brand-300/70 bg-brand-500 text-slate-950 shadow-brand hover:bg-brand-300',
+  primary: 'border border-brand-300/70 bg-brand-500 text-slate-50 shadow-brand hover:bg-brand-300',
   secondary: 'border border-brand-500/50 bg-brand-100/70 text-brand-700 hover:border-brand-300/90 hover:bg-brand-100',
   ghost: 'border border-brand-100 bg-white/70 text-slate-600 hover:border-brand-500/60 hover:text-brand-700',
 };
