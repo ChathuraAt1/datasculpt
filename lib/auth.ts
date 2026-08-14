@@ -7,6 +7,7 @@ export type AuthUser = {
   avatar?: string | null;
   provider_name?: string | null;
   email_verified_at?: string | null;
+  current_plan?: string | null;
   created_at?: string | null;
 };
 

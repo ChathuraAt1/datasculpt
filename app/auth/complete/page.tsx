@@ -7,7 +7,7 @@ import { AuthMessage, AuthShell } from '@/components/auth/AuthShell';
 import { useAuth } from '@/components/auth/AuthContext';
 import { authRequest, clearAuth, errorMessage, extractUser, persistAuth, storedToken } from '@/lib/auth';
 
-const ACCOUNT_PATH = '/account/';
+const ACCOUNT_PATH = '/dashboard/';
 const CALLBACK_PATH = '/auth/complete/';
 
 export default function AuthCompletePage() {

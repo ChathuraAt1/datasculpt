@@ -1,0 +1,22 @@
+'use client';
+
+import { useState } from 'react';
+import { CheckCircle2, CircleDashed, ShieldCheck } from 'lucide-react';
+import { useWorkspace } from '@/components/dashboard/WorkspaceContext';
+import { AccessNotice, WorkspacePageHeader, WorkspacePanel } from '@/components/dashboard/WorkspaceUI';
+
+const initialRules = [
+  { id: 'required', name: 'Required customer identifiers', category: 'Completeness', detail: 'Flag records with a missing customer identifier.', enabled: true },
+  { id: 'freshness', name: 'Recent source delivery', category: 'Freshness', detail: 'Review when the representative source is older than expected.', enabled: true },
+  { id: 'schema', name: 'Expected field structure', category: 'Consistency', detail: 'Compare incoming field names with the approved structure.', enabled: true },
+  { id: 'values', name: 'Valid account values', category: 'Validity', detail: 'Identify values that do not match the expected numeric format.', enabled: false },
+];
+
+export default function QualityGuardWorkspacePage() {
+  const { accessFor } = useWorkspace();
+  const entitlement = accessFor('qualityguard');
+  const [rules, setRules] = useState(initialRules);
+  const enabledCount = rules.filter((rule) => rule.enabled).length;
+
+  return <div className="mx-auto max-w-[1350px] px-4 py-8 sm:px-6 lg:px-8 lg:py-10"><WorkspacePageHeader eyebrow="DataSculpt QualityGuard" title="Define what ready-to-trust should mean." description="Build a representative set of quality expectations. These controls remain local to your browser and do not monitor, validate, or persist production datasets." /><div className="mt-6"><AccessNotice entitlement={entitlement} /></div><section className="mt-8 grid gap-5 xl:grid-cols-[1.15fr_0.85fr]"><WorkspacePanel className="p-6"><div className="flex items-center justify-between"><div><p className="text-[0.64rem] font-semibold uppercase tracking-[0.16em] text-brand-700">Quality rule draft</p><h2 className="mt-2 text-xl font-semibold text-[#29251d]">Choose the checks that matter</h2></div><ShieldCheck className="text-brand-700" size={22} /></div><div className="mt-6 space-y-3">{rules.map((rule) => <button key={rule.id} type="button" disabled={!entitlement.enabled} aria-pressed={rule.enabled} onClick={() => setRules((current) => current.map((item) => item.id === rule.id ? { ...item, enabled: !item.enabled } : item))} className={`flex w-full items-start gap-4 rounded-xl border p-4 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 disabled:cursor-not-allowed ${rule.enabled ? 'border-brand-300 bg-brand-100/45' : 'border-[#dfd9ca] bg-[#faf8f2]'}`}><span className={`mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full ${rule.enabled ? 'bg-brand-500 text-[#211b0d]' : 'bg-[#e8e4db] text-[#8b8577]'}`}>{rule.enabled ? <CheckCircle2 size={15} /> : <CircleDashed size={15} />}</span><span><span className="block text-xs font-semibold uppercase tracking-[0.13em] text-brand-700">{rule.category}</span><span className="mt-1 block text-sm font-semibold text-[#373228]">{rule.name}</span><span className="mt-1 block text-xs leading-5 text-[#746d5e]">{rule.detail}</span></span></button>)}</div></WorkspacePanel><WorkspacePanel className="p-6"><p className="text-[0.64rem] font-semibold uppercase tracking-[0.16em] text-brand-700">Representative validation</p><div className="mt-5 rounded-2xl border border-brand-200 bg-[#f4e6a7] p-6"><p className="text-sm font-semibold text-[#453a18]">{enabledCount} quality expectations selected</p><p className="mt-2 text-sm leading-6 text-[#66582e]">A production integration could evaluate these expectations at defined workflow handoffs.</p></div><div className="mt-5 space-y-3">{rules.map((rule) => <div key={rule.id} className="flex items-center justify-between gap-4 rounded-xl border border-[#e2dccd] bg-[#fbfaf6] px-4 py-3"><div><p className="text-sm font-medium text-[#3b372d]">{rule.name}</p><p className="mt-1 text-xs text-[#80796b]">Sample status only</p></div><span className={`rounded-full px-2.5 py-1 text-[0.62rem] font-semibold ${rule.enabled ? 'bg-brand-100 text-brand-800' : 'bg-[#ece9e1] text-[#817b6e]'}`}>{rule.enabled ? 'Included' : 'Not selected'}</span></div>)}</div><p className="mt-5 text-xs leading-5 text-[#777061]">No live assertions have run, and no schema-drift status is being claimed by this preview.</p></WorkspacePanel></section></div>;
+}

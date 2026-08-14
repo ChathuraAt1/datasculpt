@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
-import { Footer } from '@/components/layout/Footer';
-import { Navbar } from '@/components/layout/Navbar';
 import { AuthProvider } from '@/components/auth/AuthContext';
+import { AppFrame } from '@/components/layout/AppFrame';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
@@ -14,5 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body className={`${inter.variable} ${mono.variable}`}><AuthProvider><Navbar /><main className="relative min-h-screen overflow-hidden bg-slate-950"><div className="pointer-events-none absolute inset-0 bg-hero-radial" /><div className="grid-fade pointer-events-none absolute inset-0 opacity-20" />{children}</main><Footer /></AuthProvider></body></html>;
+  return <html lang="en"><body className={`${inter.variable} ${mono.variable}`}><AuthProvider><AppFrame>{children}</AppFrame></AuthProvider></body></html>;
 }

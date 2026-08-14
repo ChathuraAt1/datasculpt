@@ -9,24 +9,20 @@ import { EditorialButton } from '@/components/ui/EditorialButton';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { Reveal } from '@/components/home/Reveal';
 import { apiBaseUrl, AuthApiError, authRequest, clearAuth, isRecord } from '@/lib/auth';
+import { fallbackPlans, normalizePlanCatalog, type BillingCycle, type SubscriptionPlan } from '@/lib/plans';
 
-type BillingCycle = 'monthly' | 'annual';
-type Plan = { slug: string; name: string; description: string; monthlyPrice: number | null; yearlyPrice: number | null; currency: string; features: string[]; isActive: boolean };
+type Plan = SubscriptionPlan;
 type FormValues = { cardHolder: string; cardNumber: string; expiryMonth: string; expiryYear: string; cvv: string; street: string; city: string; state: string; zip: string; country: string };
 type FormErrors = Partial<Record<keyof FormValues, string>>;
 
-const fallbackPlans: Plan[] = [
-  { slug: 'developer', name: 'Developer', description: 'For individual engineers and small AI prototypes building initial data pipelines.', monthlyPrice: 49, yearlyPrice: 39, currency: 'USD', features: ['Core ingestion connectors', '25M records / month', 'Community support'], isActive: true },
-  { slug: 'professional', name: 'Professional', description: 'For growing engineering teams needing GPU-accelerated data transformation.', monthlyPrice: 199, yearlyPrice: 159, currency: 'USD', features: ['GPU-accelerated transforms', '250M records / month', 'QualityGuard assertions'], isActive: true },
-  { slug: 'scale', name: 'Scale', description: 'For high-throughput enterprise AI workloads and vector feature store preparation.', monthlyPrice: 499, yearlyPrice: 399, currency: 'USD', features: ['Multi-cluster workloads', '1B records / month', 'AI-ready feature preparation'], isActive: true },
-];
+const checkoutFallbackPlans = fallbackPlans.filter((plan) => plan.slug !== 'enterprise');
 
 const emptyForm: FormValues = { cardHolder: '', cardNumber: '', expiryMonth: '', expiryYear: '', cvv: '', street: '', city: '', state: '', zip: '', country: 'US' };
 
 export default function CheckoutPage() {
   const { token, user, loading: authLoading } = useAuth();
   const [query, setQuery] = useState<{ slug: string; cycle: BillingCycle } | null>(null);
-  const [plans, setPlans] = useState<Plan[]>(fallbackPlans);
+  const [plans, setPlans] = useState<Plan[]>(checkoutFallbackPlans);
   const [catalogLoading, setCatalogLoading] = useState(true);
   const [form, setForm] = useState<FormValues>(emptyForm);
   const [errors, setErrors] = useState<FormErrors>({});
@@ -48,7 +44,7 @@ export default function CheckoutPage() {
         const response = await fetch(`${base}/api/subscription-plans`, { headers: { Accept: 'application/json' } });
         const payload: unknown = await response.json();
         const data = isRecord(payload) ? payload.data : null;
-        const nextPlans = Array.isArray(data) ? data.map(normalizePlan).filter((plan): plan is Plan => Boolean(plan?.isActive)) : [];
+        const nextPlans = normalizePlanCatalog(data);
         if (!cancelled && nextPlans.length) setPlans(nextPlans);
       } catch { /* fallback catalog remains available */ } finally { if (!cancelled) setCatalogLoading(false); }
     }
@@ -101,8 +97,6 @@ export default function CheckoutPage() {
 }
 
 function Field({ label, value, onChange, error, autoComplete, inputMode }: { label: string; value: string; onChange: (value: string) => void; error?: string; autoComplete?: string; inputMode?: 'numeric' }) { return <label className="block text-sm text-slate-700">{label}<input value={value} onChange={(event) => onChange(event.target.value)} autoComplete={autoComplete} inputMode={inputMode} className="mt-2 w-full rounded-xl border border-brand-100 bg-brand-50 px-3.5 py-3 text-sm text-slate-900 outline-none transition focus:border-brand-500 focus:ring-1 focus:ring-brand-500" />{error && <span className="mt-1 block text-xs text-brand-700" role="alert">{error}</span>}</label>; }
-function normalizePlan(value: unknown): Plan | null { if (!isRecord(value) || typeof value.slug !== 'string' || typeof value.name !== 'string') return null; return { slug: value.slug, name: value.name, description: typeof value.description === 'string' ? value.description : '', monthlyPrice: toPrice(value.monthly_price), yearlyPrice: toPrice(value.yearly_price), currency: typeof value.currency === 'string' ? value.currency : 'USD', features: Array.isArray(value.features) ? value.features.filter((feature): feature is string => typeof feature === 'string') : [], isActive: value.is_active !== false }; }
-function toPrice(value: unknown) { if (typeof value === 'number' && Number.isFinite(value)) return value; if (typeof value === 'string' && Number.isFinite(Number(value))) return Number(value); return null; }
 function messageFrom(payload: unknown, fallback: string) { return isRecord(payload) && typeof payload.message === 'string' ? payload.message : fallback; }
 function apiErrors(payload: unknown): FormErrors { const errors: FormErrors = {}; if (!isRecord(payload) || !isRecord(payload.errors)) return errors; for (const [key, value] of Object.entries(payload.errors)) { if (key in emptyForm && Array.isArray(value) && typeof value[0] === 'string') errors[key as keyof FormValues] = value[0]; } return errors; }
 function extractTransaction(payload: unknown) { if (!isRecord(payload) || !isRecord(payload.data)) return null; const data = payload.data; if (typeof data.transaction_id === 'string') return data.transaction_id; if (isRecord(data.payment) && typeof data.payment.transaction_id === 'string') return data.payment.transaction_id; return null; }
