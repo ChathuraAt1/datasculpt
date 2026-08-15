@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { AuthProvider } from '@/components/auth/AuthContext';
+import { ConsentProvider } from '@/components/consent/ConsentContext';
 import { AppFrame } from '@/components/layout/AppFrame';
 import './globals.css';
 
@@ -13,5 +14,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body className={`${inter.variable} ${mono.variable}`}><AuthProvider><AppFrame>{children}</AppFrame></AuthProvider></body></html>;
+  return <html lang="en"><body className={`${inter.variable} ${mono.variable}`}><AuthProvider><ConsentProvider><AppFrame>{children}</AppFrame></ConsentProvider></AuthProvider></body></html>;
 }
