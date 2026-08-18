@@ -525,18 +525,14 @@ export default function ContactPage() {
                 service. The team aims to respond within 4 business hours.
               </p>
             </ChannelCard>
-            <ChannelCard icon={Globe2} title="Regional reference">
+            <ChannelCard icon={Globe2} title="DataSculpt Lanka (Pvt) Ltd">
               <p className="text-sm leading-6 text-slate-600">
-                DataSculpt Lanka (Pvt) Ltd
-                <br />
                 82 Dutugemunu Street, Dehiwala, Sri Lanka
               </p>
               <p className="mt-3 text-xs text-slate-500">+94 11 282 5369</p>
             </ChannelCard>
-            <ChannelCard icon={Globe2} title="Regional reference">
+            <ChannelCard icon={Globe2} title="DataSculpt Analytics Inc">
               <p className="text-sm leading-6 text-slate-600">
-                DataSculpt Analytics Inc.
-                <br />
                 1100 Wilshire Boulevard, Suite 1900, Los Angeles, CA 90017, USA
               </p>
               <p className="mt-3 text-xs text-slate-500">+1 213 555 5367</p>
