@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import type { LucideIcon } from 'lucide-react';
+import { useState } from "react";
+import Link from "next/link";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
   Check,
@@ -20,48 +20,143 @@ import {
   Target,
   Workflow,
   Zap,
-} from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { EditorialButton } from '@/components/ui/EditorialButton';
-import { GlassCard } from '@/components/ui/GlassCard';
-import { Reveal } from '@/components/home/Reveal';
+} from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { EditorialButton } from "@/components/ui/EditorialButton";
+import { GlassCard } from "@/components/ui/GlassCard";
+import { Reveal } from "@/components/home/Reveal";
 
 type Principle = { title: string; description: string; icon: LucideIcon };
-type Discipline = { title: string; description: string; value: string; icon: LucideIcon };
-type VisionStage = { number: string; title: string; description: string; direction: string; icon: LucideIcon };
+type Discipline = {
+  title: string;
+  description: string;
+  value: string;
+  icon: LucideIcon;
+};
+type VisionStage = {
+  number: string;
+  title: string;
+  description: string;
+  direction: string;
+  icon: LucideIcon;
+};
 
 const principles: Principle[] = [
-  { title: 'Velocity with purpose', description: 'Help teams spend less time waiting and more time building what comes next.', icon: Zap },
-  { title: 'Trust at every handoff', description: 'Make quality and consistency part of the workflow, not a review that happens afterward.', icon: ShieldCheck },
-  { title: 'Open by design', description: 'Work with the tools, formats, and systems enterprises already use.', icon: Network },
-  { title: 'Control where it matters', description: 'Respect security, deployment, regional, and governance requirements from the start.', icon: LockKeyhole },
+  {
+    title: "Velocity with purpose",
+    description:
+      "Help teams spend less time waiting and more time building what comes next.",
+    icon: Zap,
+  },
+  {
+    title: "Trust at every handoff",
+    description:
+      "Make quality and consistency part of the workflow, not a review that happens afterward.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Open by design",
+    description:
+      "Work with the tools, formats, and systems enterprises already use.",
+    icon: Network,
+  },
+  {
+    title: "Control where it matters",
+    description:
+      "Respect security, deployment, regional, and governance requirements from the start.",
+    icon: LockKeyhole,
+  },
 ];
 
 const disciplines: Discipline[] = [
-  { title: 'Data engineering', description: 'Shape fragmented sources into structures teams can use with less repeated preparation.', value: 'Clearer transformation workflows', icon: Database },
-  { title: 'AI and analytics', description: 'Prepare dependable context for search, forecasting, experimentation, and intelligent workflows.', value: 'Better foundations for useful AI', icon: Sparkles },
-  { title: 'Platform systems', description: 'Create the operating surfaces that help important data work move with clarity.', value: 'More visible work in motion', icon: Workflow },
-  { title: 'Security and governance', description: 'Build confidence into the places where access, quality, and control matter most.', value: 'Trust that scales with the work', icon: ShieldCheck },
-  { title: 'Customer architecture', description: 'Translate each organization’s starting point into a practical path toward better outcomes.', value: 'A path shaped around the workflow', icon: Target },
+  {
+    title: "Data engineering",
+    description:
+      "Shape fragmented sources into structures teams can use with less repeated preparation.",
+    value: "Clearer transformation workflows",
+    icon: Database,
+  },
+  {
+    title: "AI and analytics",
+    description:
+      "Prepare dependable context for search, forecasting, experimentation, and intelligent workflows.",
+    value: "Better foundations for useful AI",
+    icon: Sparkles,
+  },
+  {
+    title: "Platform systems",
+    description:
+      "Create the operating surfaces that help important data work move with clarity.",
+    value: "More visible work in motion",
+    icon: Workflow,
+  },
+  {
+    title: "Security and governance",
+    description:
+      "Build confidence into the places where access, quality, and control matter most.",
+    value: "Trust that scales with the work",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Customer architecture",
+    description:
+      "Translate each organization’s starting point into a practical path toward better outcomes.",
+    value: "A path shaped around the workflow",
+    icon: Target,
+  },
 ];
 
 const visionStages: VisionStage[] = [
-  { number: '01', title: 'Start with the preparation problem', description: 'The first direction is simple: make the work between raw information and useful action easier to understand and repeat.', direction: 'Engineering direction', icon: ScanSearch },
-  { number: '02', title: 'Make quality visible', description: 'A clearer foundation should help teams recognize what is ready, what changed, and what needs attention.', direction: 'Vision stage', icon: ShieldCheck },
-  { number: '03', title: 'Prepare information for AI', description: 'Trusted information becomes more valuable when it can provide useful context to search, analytics, and intelligent systems.', direction: 'What comes next', icon: Sparkles },
-  { number: '04', title: 'Bring trusted workflows closer to every team', description: 'The long view is a more accessible data foundation that supports regional needs, different disciplines, and better decisions.', direction: 'Vision stage', icon: Globe2 },
+  {
+    number: "01",
+    title: "Start with the preparation problem",
+    description:
+      "The first direction is simple: make the work between raw information and useful action easier to understand and repeat.",
+    direction: "Engineering direction",
+    icon: ScanSearch,
+  },
+  {
+    number: "02",
+    title: "Make quality visible",
+    description:
+      "A clearer foundation should help teams recognize what is ready, what changed, and what needs attention.",
+    direction: "Vision stage",
+    icon: ShieldCheck,
+  },
+  {
+    number: "03",
+    title: "Prepare information for AI",
+    description:
+      "Trusted information becomes more valuable when it can provide useful context to search, analytics, and intelligent systems.",
+    direction: "What comes next",
+    icon: Sparkles,
+  },
+  {
+    number: "04",
+    title: "Bring trusted workflows closer to every team",
+    description:
+      "The long view is a more accessible data foundation that supports regional needs, different disciplines, and better decisions.",
+    direction: "Vision stage",
+    icon: Globe2,
+  },
 ];
 
 const regions = [
-  { name: 'US East', location: 'Virginia', position: 'left-[16%] top-[34%]' },
-  { name: 'EU West', location: 'Frankfurt', position: 'left-[47%] top-[27%]' },
-  { name: 'APAC', location: 'Colombo / Singapore', position: 'left-[76%] top-[58%]' },
+  { name: "US East", location: "Virginia", position: "left-[16%] top-[34%]" },
+  { name: "EU West", location: "Frankfurt", position: "left-[47%] top-[27%]" },
+  {
+    name: "APAC",
+    location: "Colombo / Singapore",
+    position: "left-[76%] top-[58%]",
+  },
 ];
 
 export default function AboutPage() {
   const reducedMotion = useReducedMotion();
   const [selectedDiscipline, setSelectedDiscipline] = useState(0);
-  const [previewedDiscipline, setPreviewedDiscipline] = useState<number | null>(null);
+  const [previewedDiscipline, setPreviewedDiscipline] = useState<number | null>(
+    null,
+  );
   const [activeVision, setActiveVision] = useState(0);
   const visibleDiscipline = previewedDiscipline ?? selectedDiscipline;
   const discipline = disciplines[visibleDiscipline];
@@ -69,28 +164,478 @@ export default function AboutPage() {
   const vision = visionStages[activeVision];
   const VisionIcon = vision.icon;
 
-  return <div className="mx-auto max-w-7xl px-5 pb-24 pt-8 sm:pt-12 lg:px-8">
-    <Reveal><header className="grid items-end gap-10 lg:grid-cols-[1fr_0.8fr]"><div><Link href="/" className="inline-flex items-center gap-2 text-sm text-slate-500 transition hover:text-brand-600"><span>Home</span><ChevronRight size={14} /><span className="text-brand-600">About DataSculpt</span></Link><p className="eyebrow mt-10">THE DATASCULPT STORY</p><h1 className="mt-4 max-w-4xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.06em] text-slate-900 sm:text-6xl lg:text-7xl">Enterprise AI begins with data people can trust.</h1></div><div><p className="max-w-xl text-lg leading-8 text-slate-600">DataSculpt is building a clearer foundation for turning fragmented enterprise information into useful intelligence, reliable workflows, and AI-ready context.</p><div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center"><EditorialButton href="/products/" icon={<ArrowRight size={17} />}>Explore the platform</EditorialButton><Link href="#founder-story" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">Meet the vision <ArrowRight size={15} /></Link></div></div></header></Reveal>
+  return (
+    <div className="mx-auto max-w-7xl px-5 pb-24 pt-8 sm:pt-12 lg:px-8">
+      <Reveal>
+        <header className="grid items-end gap-10 lg:grid-cols-[1fr_0.8fr]">
+          <div>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-sm text-slate-500 transition hover:text-brand-600"
+            >
+              <span>Home</span>
+              <ChevronRight size={14} />
+              <span className="text-brand-600">About DataSculpt</span>
+            </Link>
+            <p className="eyebrow mt-10">THE DATASCULPT STORY</p>
+            <h1 className="mt-4 max-w-4xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.06em] text-slate-900 sm:text-6xl lg:text-7xl">
+              Enterprise AI begins with data people can trust.
+            </h1>
+          </div>
+          <div>
+            <p className="max-w-xl text-lg leading-8 text-slate-600">
+              DataSculpt is building a clearer foundation for turning fragmented
+              enterprise information into useful intelligence, reliable
+              workflows, and AI-ready context.
+            </p>
+            <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <EditorialButton
+                href="/products/"
+                icon={<ArrowRight size={17} />}
+              >
+                Explore the platform
+              </EditorialButton>
+              <Link
+                href="#founder-story"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+              >
+                Meet the vision <ArrowRight size={15} />
+              </Link>
+            </div>
+          </div>
+        </header>
+      </Reveal>
 
-    <Reveal><div className="relative mt-14 min-h-[430px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60 sm:min-h-[560px]" aria-hidden="true"><div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1800&q=85')] bg-cover bg-center opacity-60 mix-blend-multiply" /><div className="absolute inset-0 bg-gradient-to-r from-brand-50 via-brand-50/45 to-brand-900/20" /><div className="absolute bottom-7 left-7 max-w-md rounded-2xl border border-white/80 bg-white/80 p-5 text-slate-800 shadow-panel backdrop-blur-md sm:bottom-10 sm:left-10 sm:p-7"><p className="text-xs font-semibold uppercase tracking-[0.17em] text-brand-700">A clearer foundation</p><p className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">Build the conditions for better work.</p></div></div></Reveal>
+      <Reveal>
+        <div
+          className="relative mt-14 min-h-[430px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60 sm:min-h-[560px]"
+          aria-hidden="true"
+        >
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1800&q=85')] bg-cover bg-center opacity-60 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-50 via-brand-50/45 to-brand-900/20" />
+          <div className="absolute bottom-7 left-7 max-w-md rounded-2xl border border-white/80 bg-white/80 p-5 text-slate-800 shadow-panel backdrop-blur-md sm:bottom-10 sm:left-10 sm:p-7">
+            <p className="text-xs font-semibold uppercase tracking-[0.17em] text-brand-700">
+              A clearer foundation
+            </p>
+            <p className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
+              Build the conditions for better work.
+            </p>
+          </div>
+        </div>
+      </Reveal>
 
-    <Reveal><section id="founder-story" className="scroll-mt-24 pt-28"><div className="grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20"><div className="relative min-h-[500px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60 sm:min-h-[600px]"><div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85')] bg-cover bg-center grayscale-[15%]" aria-hidden="true" /><div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-brand-900/10 to-transparent" aria-hidden="true" /><div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white/70 bg-white/85 p-5 backdrop-blur-md"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-700">THE PERSON BEHIND THE BUILD</p><p className="mt-2 text-lg font-semibold text-slate-800">Founder perspective</p><p className="mt-1 text-sm text-slate-600">A replaceable portrait placeholder for the approved founder story.</p></div></div><div><p className="eyebrow">WHY DATASCULPT EXISTS</p><h2 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.04em] text-slate-900 sm:text-5xl">Build the foundation before asking AI to make decisions.</h2><p className="mt-6 text-lg leading-8 text-slate-600">The hardest part of enterprise AI is rarely the model alone. It is creating information that teams can understand, trust, and use repeatedly.</p><p className="mt-5 leading-7 text-slate-600">That is why DataSculpt focuses on the work that makes intelligent systems useful: preparing information, validating quality, and giving every team a clearer path from what they have today to what they want to build next.</p><blockquote className="mt-8 border-l-2 border-brand-400 pl-5 text-2xl font-semibold leading-9 tracking-tight text-slate-800">Trusted data is not a finishing step. It is the beginning of better work.</blockquote><p className="mt-5 text-xs font-semibold uppercase tracking-[0.15em] text-brand-600">Founder perspective and company vision</p></div></div></section></Reveal>
+      <Reveal>
+        <section id="founder-story" className="scroll-mt-24 pt-28">
+          <div className="grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+            <div className="relative min-h-[500px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60 sm:min-h-[600px]">
+              <div
+                className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85')] bg-cover bg-center grayscale-[15%]"
+                aria-hidden="true"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-brand-900/10 to-transparent"
+                aria-hidden="true"
+              />
+              <div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white/70 bg-white/85 p-5 backdrop-blur-md">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-700">
+                  THE PERSON BEHIND THE BUILD
+                </p>
+                <p className="mt-2 text-lg font-semibold text-slate-800">
+                  Built With Purpose
+                </p>
+                <p className="mt-1 text-sm text-slate-600">
+                  A closer look at the vision behind DataSculpt.
+                </p>
+              </div>
+            </div>
+            <div>
+              <p className="eyebrow">WHY DATASCULPT EXISTS</p>
+              <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.04em] text-slate-900 sm:text-5xl">
+                Build the foundation before asking AI to make decisions.
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-slate-600">
+                The hardest part of enterprise AI is rarely the model alone. It
+                is creating information that teams can understand, trust, and
+                use repeatedly.
+              </p>
+              <p className="mt-5 leading-7 text-slate-600">
+                That is why DataSculpt focuses on the work that makes
+                intelligent systems useful: preparing information, validating
+                quality, and giving every team a clearer path from what they
+                have today to what they want to build next.
+              </p>
+              <blockquote className="mt-8 border-l-2 border-brand-400 pl-5 text-2xl font-semibold leading-9 tracking-tight text-slate-800">
+                Trusted data is not a finishing step. It is the beginning of
+                better work.
+              </blockquote>
+              <p className="mt-5 text-xs font-semibold uppercase tracking-[0.15em] text-brand-600">
+                Founder perspective and company vision
+              </p>
+            </div>
+          </div>
+        </section>
+      </Reveal>
 
-    <Reveal><section className="pt-28"><div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center"><div><p className="eyebrow">THE PROBLEM WE ARE HERE TO SOLVE</p><h2 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.04em] text-slate-900 sm:text-5xl">The future is being slowed down by information that is difficult to use.</h2><div className="mt-8 space-y-4">{['Information is spread across too many systems.', 'Teams repeat the same preparation work.', 'AI initiatives lack dependable context.'].map((item) => <div key={item} className="flex items-center gap-3 border-b border-brand-100 pb-4 text-lg font-semibold text-slate-800"><span className="grid h-7 w-7 place-items-center rounded-full bg-brand-100 text-brand-700"><Check size={15} /></span>{item}</div>)}</div><p className="mt-8 max-w-xl text-lg font-semibold leading-8 text-brand-700">DataSculpt brings structure, quality, and AI readiness into one clearer path.</p><Link href="/products/" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-500">See the platform approach <ArrowRight size={15} /></Link></div><div className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60"><div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85')] bg-cover bg-center opacity-55 mix-blend-multiply" aria-hidden="true" /><div className="absolute inset-0 bg-gradient-to-t from-brand-900/55 via-brand-100/15 to-brand-50/45" aria-hidden="true" /><div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white/75 bg-white/80 p-5 text-sm font-semibold leading-6 text-slate-800 backdrop-blur-md">A dependable foundation gives every team more room to move.</div></div></div></section></Reveal>
+      <Reveal>
+        <section className="pt-28">
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
+            <div>
+              <p className="eyebrow">THE PROBLEM WE ARE HERE TO SOLVE</p>
+              <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.04em] text-slate-900 sm:text-5xl">
+                The future is being slowed down by information that is difficult
+                to use.
+              </h2>
+              <div className="mt-8 space-y-4">
+                {[
+                  "Information is spread across too many systems.",
+                  "Teams repeat the same preparation work.",
+                  "AI initiatives lack dependable context.",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 border-b border-brand-100 pb-4 text-lg font-semibold text-slate-800"
+                  >
+                    <span className="grid h-7 w-7 place-items-center rounded-full bg-brand-100 text-brand-700">
+                      <Check size={15} />
+                    </span>
+                    {item}
+                  </div>
+                ))}
+              </div>
+              <p className="mt-8 max-w-xl text-lg font-semibold leading-8 text-brand-700">
+                DataSculpt brings structure, quality, and AI readiness into one
+                clearer path.
+              </p>
+              <Link
+                href="/products/"
+                className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-500"
+              >
+                See the platform approach <ArrowRight size={15} />
+              </Link>
+            </div>
+            <div className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60">
+              <div
+                className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85')] bg-cover bg-center opacity-55 mix-blend-multiply"
+                aria-hidden="true"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-brand-900/55 via-brand-100/15 to-brand-50/45"
+                aria-hidden="true"
+              />
+              <div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white/75 bg-white/80 p-5 text-sm font-semibold leading-6 text-slate-800 backdrop-blur-md">
+                A dependable foundation gives every team more room to move.
+              </div>
+            </div>
+          </div>
+        </section>
+      </Reveal>
 
-    <Reveal><section className="pt-28"><p className="eyebrow">HOW WE BUILD</p><h2 className="mt-4 max-w-2xl text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">Four principles behind the work.</h2><div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{principles.map((principle, index) => <PrincipleCard key={principle.title} principle={principle} index={index} reducedMotion={reducedMotion} />)}</div></section></Reveal>
+      <Reveal>
+        <section className="pt-28">
+          <p className="eyebrow">HOW WE BUILD</p>
+          <h2 className="mt-4 max-w-2xl text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">
+            Four principles behind the work.
+          </h2>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {principles.map((principle, index) => (
+              <PrincipleCard
+                key={principle.title}
+                principle={principle}
+                index={index}
+                reducedMotion={reducedMotion}
+              />
+            ))}
+          </div>
+        </section>
+      </Reveal>
 
-    <Reveal><section id="team-disciplines" className="scroll-mt-24 pt-28"><div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-center"><div><p className="eyebrow">THE PEOPLE AND PERSPECTIVES BEHIND THE WORK</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">Different disciplines. One clearer direction.</h2><p className="mt-5 leading-7 text-slate-600">DataSculpt brings together the perspectives needed to make enterprise data more useful, understandable, and ready for what comes next.</p><div className="mt-8 space-y-2">{disciplines.map((item, index) => { const Icon = item.icon; const active = visibleDiscipline === index; return <motion.button key={item.title} type="button" aria-pressed={selectedDiscipline === index} onClick={() => setSelectedDiscipline(index)} onMouseEnter={() => setPreviewedDiscipline(index)} onMouseLeave={() => setPreviewedDiscipline(null)} onFocus={() => setPreviewedDiscipline(index)} onBlur={() => setPreviewedDiscipline(null)} whileHover={reducedMotion ? undefined : { x: 5 }} className={`flex w-full items-center gap-3 rounded-xl border p-4 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${active ? 'border-brand-400 bg-white shadow-panel' : 'border-brand-100 bg-white/50 hover:border-brand-300'}`}><span className={`grid h-9 w-9 place-items-center rounded-lg ${active ? 'bg-brand-500 text-white' : 'bg-brand-100 text-brand-700'}`}><Icon size={17} /></span><span className="font-semibold text-slate-800">{item.title}</span><ArrowRight size={15} className={`ml-auto transition ${active ? 'text-brand-600' : 'text-slate-400'}`} /></motion.button>; })}</div></div><div className="relative min-h-[570px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60"><div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1500&q=85')] bg-cover bg-center opacity-65" aria-hidden="true" /><div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-950/10 to-brand-900/15" aria-hidden="true" /><AnimatePresence mode="wait"><motion.div key={discipline.title} initial={{ opacity: 0, y: reducedMotion ? 0 : 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reducedMotion ? 0 : -10 }} transition={{ duration: reducedMotion ? 0 : 0.25 }} className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white bg-white p-6 shadow-panel"><DisciplineIcon size={24} className="text-brand-700" /><p className="mt-5 text-xs font-semibold uppercase tracking-[0.15em] text-brand-800">{discipline.value}</p><h3 className="mt-2 text-2xl font-semibold text-slate-900">{discipline.title}</h3><p className="mt-3 leading-7 text-slate-700">{discipline.description}</p><p className="mt-5 text-xs text-slate-600">Illustrative team discipline — not an employee profile.</p></motion.div></AnimatePresence></div></div></section></Reveal>
+      <Reveal>
+        <section id="team-disciplines" className="scroll-mt-24 pt-28">
+          <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
+            <div>
+              <p className="eyebrow">
+                THE PEOPLE AND PERSPECTIVES BEHIND THE WORK
+              </p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">
+                Different disciplines. One clearer direction.
+              </h2>
+              <p className="mt-5 leading-7 text-slate-600">
+                DataSculpt brings together the perspectives needed to make
+                enterprise data more useful, understandable, and ready for what
+                comes next.
+              </p>
+              <div className="mt-8 space-y-2">
+                {disciplines.map((item, index) => {
+                  const Icon = item.icon;
+                  const active = visibleDiscipline === index;
+                  return (
+                    <motion.button
+                      key={item.title}
+                      type="button"
+                      aria-pressed={selectedDiscipline === index}
+                      onClick={() => setSelectedDiscipline(index)}
+                      onMouseEnter={() => setPreviewedDiscipline(index)}
+                      onMouseLeave={() => setPreviewedDiscipline(null)}
+                      onFocus={() => setPreviewedDiscipline(index)}
+                      onBlur={() => setPreviewedDiscipline(null)}
+                      whileHover={reducedMotion ? undefined : { x: 5 }}
+                      className={`flex w-full items-center gap-3 rounded-xl border p-4 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${active ? "border-brand-400 bg-white shadow-panel" : "border-brand-100 bg-white/50 hover:border-brand-300"}`}
+                    >
+                      <span
+                        className={`grid h-9 w-9 place-items-center rounded-lg ${active ? "bg-brand-500 text-white" : "bg-brand-100 text-brand-700"}`}
+                      >
+                        <Icon size={17} />
+                      </span>
+                      <span className="font-semibold text-slate-800">
+                        {item.title}
+                      </span>
+                      <ArrowRight
+                        size={15}
+                        className={`ml-auto transition ${active ? "text-brand-600" : "text-slate-400"}`}
+                      />
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="relative min-h-[570px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60">
+              <div
+                className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1500&q=85')] bg-cover bg-center opacity-65"
+                aria-hidden="true"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-950/10 to-brand-900/15"
+                aria-hidden="true"
+              />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={discipline.title}
+                  initial={{ opacity: 0, y: reducedMotion ? 0 : 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: reducedMotion ? 0 : -10 }}
+                  transition={{ duration: reducedMotion ? 0 : 0.25 }}
+                  className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white bg-white p-6 shadow-panel"
+                >
+                  <DisciplineIcon size={24} className="text-brand-700" />
+                  <p className="mt-5 text-xs font-semibold uppercase tracking-[0.15em] text-brand-800">
+                    {discipline.value}
+                  </p>
+                  <h3 className="mt-2 text-2xl font-semibold text-slate-900">
+                    {discipline.title}
+                  </h3>
+                  <p className="mt-3 leading-7 text-slate-700">
+                    {discipline.description}
+                  </p>
+                  <p className="mt-5 text-xs text-slate-600">
+                    Illustrative team discipline — not an employee profile.
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </section>
+      </Reveal>
 
-    <Reveal><section id="vision" className="scroll-mt-24 pt-28"><div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start"><div><p className="eyebrow">VISION ROADMAP / ENGINEERING DIRECTION</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">A long view of the data layer.</h2><p className="mt-5 leading-7 text-slate-600">This is a vision reference model for the sequence DataSculpt is designed around: make the work easier, make the signal clearer, prepare the context, then bring it closer to every team.</p><div className="mt-7 flex items-center gap-3 rounded-xl border border-brand-200 bg-brand-50 p-4 text-sm font-semibold text-brand-700"><Target size={18} />Vision reference — not independently verified company history</div></div><div className="grid gap-5 md:grid-cols-[0.72fr_1.28fr]"><div className="relative space-y-2"><div className="absolute bottom-5 left-5 top-5 w-px bg-brand-200" aria-hidden="true" />{visionStages.map((item, index) => <button key={item.number} type="button" aria-pressed={activeVision === index} onClick={() => setActiveVision(index)} className={`relative z-10 flex w-full items-center gap-3 rounded-xl border p-3 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${activeVision === index ? 'border-brand-400 bg-brand-500 text-white shadow-brand' : 'border-transparent bg-white/55 text-slate-600 hover:border-brand-300'}`}><span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full font-mono text-xs ${activeVision === index ? 'bg-white/20 text-white' : 'bg-brand-100 text-brand-700'}`}>{item.number}</span><span className="text-sm font-semibold">{item.title}</span></button>)}</div><AnimatePresence mode="wait"><motion.div key={vision.number} initial={{ opacity: 0, x: reducedMotion ? 0 : 12 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: reducedMotion ? 0 : -12 }} transition={{ duration: reducedMotion ? 0 : 0.25 }}><GlassCard className="min-h-[280px] border-brand-200 bg-white/70 p-6 sm:p-7"><VisionIcon size={25} className="text-brand-600" /><p className="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-brand-700">{vision.direction}</p><h3 className="mt-3 text-2xl font-semibold text-slate-900">{vision.title}</h3><p className="mt-4 leading-7 text-slate-600">{vision.description}</p></GlassCard></motion.div></AnimatePresence></div></div></section></Reveal>
+      <Reveal>
+        <section id="vision" className="scroll-mt-24 pt-28">
+          <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+            <div>
+              <p className="eyebrow">VISION ROADMAP / ENGINEERING DIRECTION</p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">
+                A long view of the data layer.
+              </h2>
+              <p className="mt-5 leading-7 text-slate-600">
+                This is a vision reference model for the sequence DataSculpt is
+                designed around: make the work easier, make the signal clearer,
+                prepare the context, then bring it closer to every team.
+              </p>
+              <div className="mt-7 flex items-center gap-3 rounded-xl border border-brand-200 bg-brand-50 p-4 text-sm font-semibold text-brand-700">
+                <Target size={18} />
+                Vision reference — not independently verified company history
+              </div>
+            </div>
+            <div className="grid gap-5 md:grid-cols-[0.72fr_1.28fr]">
+              <div className="relative space-y-2">
+                <div
+                  className="absolute bottom-5 left-5 top-5 w-px bg-brand-200"
+                  aria-hidden="true"
+                />
+                {visionStages.map((item, index) => (
+                  <button
+                    key={item.number}
+                    type="button"
+                    aria-pressed={activeVision === index}
+                    onClick={() => setActiveVision(index)}
+                    className={`relative z-10 flex w-full items-center gap-3 rounded-xl border p-3 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${activeVision === index ? "border-brand-400 bg-brand-500 text-white shadow-brand" : "border-transparent bg-white/55 text-slate-600 hover:border-brand-300"}`}
+                  >
+                    <span
+                      className={`grid h-8 w-8 shrink-0 place-items-center rounded-full font-mono text-xs ${activeVision === index ? "bg-white/20 text-white" : "bg-brand-100 text-brand-700"}`}
+                    >
+                      {item.number}
+                    </span>
+                    <span className="text-sm font-semibold">{item.title}</span>
+                  </button>
+                ))}
+              </div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={vision.number}
+                  initial={{ opacity: 0, x: reducedMotion ? 0 : 12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: reducedMotion ? 0 : -12 }}
+                  transition={{ duration: reducedMotion ? 0 : 0.25 }}
+                >
+                  <GlassCard className="min-h-[280px] border-brand-200 bg-white/70 p-6 sm:p-7">
+                    <VisionIcon size={25} className="text-brand-600" />
+                    <p className="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-brand-700">
+                      {vision.direction}
+                    </p>
+                    <h3 className="mt-3 text-2xl font-semibold text-slate-900">
+                      {vision.title}
+                    </h3>
+                    <p className="mt-4 leading-7 text-slate-600">
+                      {vision.description}
+                    </p>
+                  </GlassCard>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </section>
+      </Reveal>
 
-    <Reveal><section className="pt-28"><div className="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr]"><div className="rounded-[2rem] border border-brand-100 bg-brand-50 p-7 sm:p-9"><div className="flex items-start justify-between"><div><p className="eyebrow">REGIONAL INFRASTRUCTURE VISION</p><h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-slate-900">Built with a regional view of enterprise needs.</h2></div><Globe2 size={25} className="text-brand-700" /></div><div className="mt-8 grid gap-3 sm:grid-cols-3">{regions.map((region) => <div key={region.name} className="rounded-2xl border border-brand-100 bg-white p-4"><span className="block h-3 w-3 rounded-full bg-brand-500" /><p className="mt-4 text-sm font-semibold text-slate-900">{region.name}</p><p className="mt-1 text-sm text-slate-600">{region.location}</p><p className="mt-4 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-brand-700">Reference node</p></div>)}</div><p className="mt-6 text-xs leading-5 text-slate-500">Infrastructure vision and reference model — not live deployment telemetry.</p></div><div><p className="eyebrow">REFERENCE MODEL</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900">Closer to the teams and datasets it serves.</h2><p className="mt-5 leading-7 text-slate-600">DataSculpt’s infrastructure vision considers regional context, deployment boundaries, and the practical needs of enterprise teams across US, EU, and APAC environments.</p></div></div></section></Reveal>
+      <Reveal>
+        <section className="pt-28">
+          <div className="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+            <div className="rounded-[2rem] border border-brand-100 bg-brand-50 p-7 sm:p-9">
+              <div className="flex items-start justify-between">
+                <div>
+                  <p className="eyebrow">REGIONAL INFRASTRUCTURE VISION</p>
+                  <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-slate-900">
+                    Built with a regional view of enterprise needs.
+                  </h2>
+                </div>
+                <Globe2 size={25} className="text-brand-700" />
+              </div>
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                {regions.map((region) => (
+                  <div
+                    key={region.name}
+                    className="rounded-2xl border border-brand-100 bg-white p-4"
+                  >
+                    <span className="block h-3 w-3 rounded-full bg-brand-500" />
+                    <p className="mt-4 text-sm font-semibold text-slate-900">
+                      {region.name}
+                    </p>
+                    <p className="mt-1 text-sm text-slate-600">
+                      {region.location}
+                    </p>
+                    <p className="mt-4 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-brand-700">
+                      Reference node
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 text-xs leading-5 text-slate-500">
+                Infrastructure vision and reference model — not live deployment
+                telemetry.
+              </p>
+            </div>
+            <div>
+              <p className="eyebrow">REFERENCE MODEL</p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900">
+                Closer to the teams and datasets it serves.
+              </h2>
+              <p className="mt-5 leading-7 text-slate-600">
+                DataSculpt’s infrastructure vision considers regional context,
+                deployment boundaries, and the practical needs of enterprise
+                teams across US, EU, and APAC environments.
+              </p>
+            </div>
+          </div>
+        </section>
+      </Reveal>
 
-    <Reveal><section id="careers" className="scroll-mt-24 pt-28"><div className="grid items-stretch gap-0 overflow-hidden rounded-[2rem] border border-brand-300/60 bg-white shadow-panel lg:grid-cols-[1fr_0.82fr]"><div className="flex flex-col justify-center p-8 sm:p-12 lg:p-14"><p className="eyebrow">HELP SHAPE WHAT COMES NEXT</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">Build a better foundation for enterprise AI.</h2><p className="mt-5 max-w-xl leading-7 text-slate-600">Whether you are exploring a workflow, preparing for production, or shaping a new AI initiative, start with a clearer conversation.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><EditorialButton href="/products/" icon={<ArrowRight size={17} />}>Explore the platform</EditorialButton><Button href="/contact/" variant="ghost">Explore your use case <ArrowRight size={15} /></Button></div><p className="mt-6 text-xs text-slate-500">Careers conversations are currently coordinated directly with the DataSculpt team.</p></div><div className="relative min-h-[420px] bg-brand-100 sm:min-h-[520px] lg:min-h-[620px]" aria-hidden="true"><div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1400&q=90')] bg-cover bg-center opacity-75" /><div className="absolute inset-0 bg-gradient-to-br from-brand-200/25 via-brand-700/10 to-slate-900/35" /><div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white bg-white/95 px-5 py-4 text-sm font-semibold text-slate-900 shadow-panel">Trusted data. Better decisions. Stronger AI foundations.</div></div></div></section></Reveal>
-  </div>;
+      <Reveal>
+        <section id="careers" className="scroll-mt-24 pt-28">
+          <div className="grid items-stretch gap-0 overflow-hidden rounded-[2rem] border border-brand-300/60 bg-white shadow-panel lg:grid-cols-[1fr_0.82fr]">
+            <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-14">
+              <p className="eyebrow">HELP SHAPE WHAT COMES NEXT</p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">
+                Build a better foundation for enterprise AI.
+              </h2>
+              <p className="mt-5 max-w-xl leading-7 text-slate-600">
+                Whether you are exploring a workflow, preparing for production,
+                or shaping a new AI initiative, start with a clearer
+                conversation.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <EditorialButton
+                  href="/products/"
+                  icon={<ArrowRight size={17} />}
+                >
+                  Explore the platform
+                </EditorialButton>
+                <Button href="/contact/" variant="ghost">
+                  Explore your use case <ArrowRight size={15} />
+                </Button>
+              </div>
+              <p className="mt-6 text-xs text-slate-500">
+                Careers conversations are currently coordinated directly with
+                the DataSculpt team.
+              </p>
+            </div>
+            <div
+              className="relative min-h-[420px] bg-brand-100 sm:min-h-[520px] lg:min-h-[620px]"
+              aria-hidden="true"
+            >
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1400&q=90')] bg-cover bg-center opacity-75" />
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-200/25 via-brand-700/10 to-slate-900/35" />
+              <div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white bg-white/95 px-5 py-4 text-sm font-semibold text-slate-900 shadow-panel">
+                Trusted data. Better decisions. Stronger AI foundations.
+              </div>
+            </div>
+          </div>
+        </section>
+      </Reveal>
+    </div>
+  );
 }
 
-function PrincipleCard({ principle, index, reducedMotion }: { principle: Principle; index: number; reducedMotion: boolean | null }) {
+function PrincipleCard({
+  principle,
+  index,
+  reducedMotion,
+}: {
+  principle: Principle;
+  index: number;
+  reducedMotion: boolean | null;
+}) {
   const Icon = principle.icon;
-  return <motion.div initial={{ opacity: 0, y: reducedMotion ? 0 : 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: reducedMotion ? 0 : index * 0.06 }} whileHover={reducedMotion ? undefined : { y: -4 }} className="h-full"><GlassCard className="h-full border-brand-100 bg-white/60 p-6 transition hover:border-brand-300 hover:bg-white/85"><span className="grid h-11 w-11 place-items-center rounded-xl border border-brand-200 bg-brand-50 text-brand-700"><Icon size={20} /></span><h3 className="mt-6 text-xl font-semibold text-slate-900">{principle.title}</h3><p className="mt-3 text-sm leading-6 text-slate-600">{principle.description}</p><div className="mt-6 flex items-center gap-2 border-t border-brand-100 pt-4 text-xs font-semibold uppercase tracking-[0.13em] text-brand-700"><Circle size={9} fill="currentColor" />Building principle</div></GlassCard></motion.div>;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: reducedMotion ? 0 : 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ delay: reducedMotion ? 0 : index * 0.06 }}
+      whileHover={reducedMotion ? undefined : { y: -4 }}
+      className="h-full"
+    >
+      <GlassCard className="h-full border-brand-100 bg-white/60 p-6 transition hover:border-brand-300 hover:bg-white/85">
+        <span className="grid h-11 w-11 place-items-center rounded-xl border border-brand-200 bg-brand-50 text-brand-700">
+          <Icon size={20} />
+        </span>
+        <h3 className="mt-6 text-xl font-semibold text-slate-900">
+          {principle.title}
+        </h3>
+        <p className="mt-3 text-sm leading-6 text-slate-600">
+          {principle.description}
+        </p>
+        <div className="mt-6 flex items-center gap-2 border-t border-brand-100 pt-4 text-xs font-semibold uppercase tracking-[0.13em] text-brand-700">
+          <Circle size={9} fill="currentColor" />
+          Building principle
+        </div>
+      </GlassCard>
+    </motion.div>
+  );
 }

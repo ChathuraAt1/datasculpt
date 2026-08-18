@@ -527,13 +527,19 @@ export default function ContactPage() {
             </ChannelCard>
             <ChannelCard icon={Globe2} title="Regional reference">
               <p className="text-sm leading-6 text-slate-600">
-                Colombo / APAC Operations Hub
+                DataSculpt Lanka (Pvt) Ltd
                 <br />
-                US East / N. Virginia
+                82 Dutugemunu Street, Dehiwala, Sri Lanka
               </p>
-              <p className="mt-3 text-xs text-slate-500">
-                Regional reference information, not live operational telemetry.
+              <p className="mt-3 text-xs text-slate-500">+94 11 282 5369</p>
+            </ChannelCard>
+            <ChannelCard icon={Globe2} title="Regional reference">
+              <p className="text-sm leading-6 text-slate-600">
+                DataSculpt Analytics Inc.
+                <br />
+                1100 Wilshire Boulevard, Suite 1900, Los Angeles, CA 90017, USA
               </p>
+              <p className="mt-3 text-xs text-slate-500">+1 213 555 5367</p>
             </ChannelCard>
             <div className="flex gap-3 rounded-xl border border-brand-100 bg-brand-50 p-4 text-xs leading-5 text-slate-600">
               <ShieldCheck
