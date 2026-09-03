@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Globe2, Radio } from "lucide-react";
+import { ArrowUpRight, Globe2, Linkedin, Radio } from "lucide-react";
 
 const platformLinks = [
   ["Products", "/products/"],
@@ -10,6 +10,9 @@ const platformLinks = [
 const companyLinks = [
   ["About DataSculpt", "/about/"],
   ["Contact Engineering", "/contact/"],
+  ["LinkedIn", "https://www.linkedin.com/company/data-sculpt/"],
+  ["Crunchbase", "https://www.crunchbase.com/organization/datasculpt-6d0b"],
+  ["F6S", "https://www.f6s.com/datasculpt"],
 ] as const;
 
 const trustLinks = [
@@ -59,6 +62,14 @@ export function Footer() {
             >
               See the platform <ArrowUpRight size={15} />
             </Link>
+            <a
+              href="https://www.linkedin.com/company/data-sculpt/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-300 transition hover:text-brand-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
+            >
+              Follow DataSculpt on LinkedIn <Linkedin size={15} />
+            </a>
           </div>
         </div>
 
@@ -88,6 +99,16 @@ export function Footer() {
             © 2026 DataSculpt.lk. Enterprise data, intelligently transformed.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+            <a
+              href="https://www.linkedin.com/company/data-sculpt/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs text-slate-400 transition hover:text-brand-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
+              aria-label="DataSculpt on LinkedIn"
+            >
+              <Linkedin size={14} className="text-brand-300" />
+              <span>LinkedIn</span>
+            </a>
             <label className="flex items-center gap-2 text-slate-400">
               <Globe2 size={14} className="text-brand-300" />
               <span className="sr-only">Regional infrastructure</span>
@@ -121,16 +142,31 @@ function FooterColumn({
         {title}
       </h2>
       <ul className="space-y-3">
-        {links.map(([label, href]) => (
-          <li key={href}>
-            <Link
-              href={href}
-              className="text-sm text-slate-400 transition hover:text-brand-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
-            >
-              {label}
-            </Link>
-          </li>
-        ))}
+        {links.map(([label, href]) => {
+          const isExternal = href.startsWith("http");
+          return (
+            <li key={href}>
+              {isExternal ? (
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm text-slate-400 transition hover:text-brand-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
+                >
+                  <span>{label}</span>
+                  <ArrowUpRight size={13} className="text-slate-500" />
+                </a>
+              ) : (
+                <Link
+                  href={href}
+                  className="text-sm text-slate-400 transition hover:text-brand-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
+                >
+                  {label}
+                </Link>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
