@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -178,7 +179,20 @@ export default function AboutPage() {
               <ChevronRight size={14} />
               <span className="text-brand-600">About DataSculpt</span>
             </Link>
-            <p className="eyebrow mt-10">THE DATASCULPT STORY</p>
+            <div className="mt-8 mb-4 inline-flex items-center gap-2.5">
+              <Image
+                src="/images/datasculpt_logo.webp"
+                alt="DataSculpt"
+                width={150}
+                height={45}
+                className="h-9 w-auto object-contain"
+                priority
+              />
+              <span className="rounded bg-brand-400/15 px-2 py-0.5 font-mono text-[0.6rem] font-semibold tracking-wider text-brand-700">
+                .lk
+              </span>
+            </div>
+            <p className="eyebrow mt-2">THE DATASCULPT STORY</p>
             <h1 className="mt-4 max-w-4xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.06em] text-slate-900 sm:text-6xl lg:text-7xl">
               Enterprise AI begins with data people can trust.
             </h1>

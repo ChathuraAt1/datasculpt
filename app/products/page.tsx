@@ -7,6 +7,7 @@ import type { LucideIcon } from 'lucide-react';
 import {
   ArrowDownRight,
   ArrowRight,
+  ArrowUpRight,
   Check,
   ChevronDown,
   ChevronRight,
@@ -14,6 +15,7 @@ import {
   Database,
   FileCode2,
   Layers3,
+  LayoutDashboard,
   Network,
   ScanSearch,
   ShieldCheck,
@@ -94,6 +96,63 @@ const technicalTopics = [
   ['Workflow visibility', 'Organize stages, dependencies, ownership, and execution context around the workflows your teams operate.'],
 ] as const;
 
+const dashboardModules = [
+  {
+    id: 'overview',
+    name: 'Ops Center Overview',
+    shortName: 'Overview',
+    href: '/dashboard/',
+    eyebrow: 'Operations Hub',
+    description: 'System-level telemetry, active worker allocation, pipeline health status, and live execution feeds.',
+    icon: LayoutDashboard,
+  },
+  {
+    id: 'transform',
+    name: 'DataSculpt Transform',
+    shortName: 'Transform',
+    href: '/dashboard/transform/',
+    eyebrow: 'Schema Normalization',
+    description: 'Schema normalization, type reconciliation, and lineage-ready Parquet dataset preparation.',
+    icon: Layers3,
+  },
+  {
+    id: 'velocity',
+    name: 'DataSculpt Velocity',
+    shortName: 'Velocity',
+    href: '/dashboard/velocity/',
+    eyebrow: 'GPU Compute Acceleration',
+    description: 'NVIDIA cuDF & Apache Arrow execution engine for accelerating transformation-heavy workloads.',
+    icon: Zap,
+  },
+  {
+    id: 'qualityguard',
+    name: 'DataSculpt QualityGuard',
+    shortName: 'QualityGuard',
+    href: '/dashboard/qualityguard/',
+    eyebrow: 'Continuous Quality',
+    description: 'Automated schema validation, freshness assertions, and actionable anomaly detection context.',
+    icon: ShieldCheck,
+  },
+  {
+    id: 'ai-ready',
+    name: 'DataSculpt AI-Ready',
+    shortName: 'AI-Ready',
+    href: '/dashboard/ai-ready/',
+    eyebrow: 'AI Context & Features',
+    description: 'RAG context chunking, vector embedding generation, and ML feature dataset creation.',
+    icon: Sparkles,
+  },
+  {
+    id: 'flow',
+    name: 'DataSculpt Flow (Ops)',
+    shortName: 'Flow (Ops)',
+    href: '/dashboard/flow/',
+    eyebrow: 'Pipeline Orchestration',
+    description: 'End-to-end multi-stage pipeline orchestration, dependency graphs, and execution controls.',
+    icon: Workflow,
+  },
+];
+
 export default function ProductsPage() {
   const reducedMotion = useReducedMotion();
   const [selectedStage, setSelectedStage] = useState(0);
@@ -114,12 +173,78 @@ export default function ProductsPage() {
           </div>
           <div className="lg:pb-2">
             <p className="max-w-xl text-lg leading-8 text-slate-600">DataSculpt helps teams create trusted, usable information for better decisions, stronger workflows, and enterprise AI that can work with real business context.</p>
-            <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center"><EditorialButton href="/contact/" icon={<Workflow size={17} />}>See your workflow</EditorialButton><Link href="#product-journey" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-700 transition hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">Explore the five capabilities <ArrowDownRight size={16} /></Link></div>
+            <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <EditorialButton href="/dashboard/" icon={<ArrowUpRight size={17} />}>
+                Launch Ops Center
+              </EditorialButton>
+              <Link
+                href="#dashboard-modules"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-brand-700 transition hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+              >
+                Explore live workspace modules <ArrowDownRight size={16} />
+              </Link>
+            </div>
           </div>
         </header>
       </Reveal>
 
       <Reveal delay={0.08}><div className="relative mt-14 h-[360px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/70 sm:h-[440px] lg:h-[500px]" aria-hidden="true"><div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,253,242,0.98),rgba(249,223,112,0.32),rgba(183,121,0,0.36))]" /><div className="absolute inset-0 bg-cover bg-center mix-blend-multiply opacity-45" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1800&q=80')" }} /><div className="absolute -bottom-24 left-[12%] h-72 w-72 rounded-full bg-brand-300/40 blur-3xl" /><div className="absolute right-[10%] top-[16%] h-48 w-48 rounded-full border border-white/60" /><div className="absolute right-[14%] top-[24%] h-32 w-32 rounded-full border border-brand-500/35" /><div className="absolute bottom-8 left-7 rounded-2xl border border-white/80 bg-white/80 px-5 py-4 text-sm font-semibold text-slate-800 shadow-panel backdrop-blur-md sm:left-10"><span className="block text-[0.65rem] uppercase tracking-[0.18em] text-brand-600">One platform, many starting points</span><span className="mt-1 block text-lg">Make information easier to move forward.</span></div></div></Reveal>
+
+      <Reveal>
+        <section id="dashboard-modules" className="scroll-mt-24 pt-28">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div className="max-w-2xl">
+              <p className="eyebrow">LIVE WORKSPACE ACCESS</p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">
+                Direct access to your data engineering workspace.
+              </h2>
+              <p className="mt-4 text-base leading-7 text-slate-600">
+                Launch directly into live operations, schema transformation, compute planning, validation checks, and AI feature engineering.
+              </p>
+            </div>
+            <EditorialButton href="/dashboard/" icon={<ArrowUpRight size={17} />}>
+              Open Full Workspace
+            </EditorialButton>
+          </div>
+
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {dashboardModules.map((module) => {
+              const Icon = module.icon;
+              return (
+                <Link
+                  key={module.id}
+                  href={module.href}
+                  className="group relative flex flex-col justify-between rounded-2xl border border-brand-200/80 bg-white/80 p-6 shadow-sm backdrop-blur-md transition hover:-translate-y-1 hover:border-brand-400 hover:shadow-panel"
+                >
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="grid h-11 w-11 place-items-center rounded-xl border border-brand-200 bg-brand-50 text-brand-600 transition group-hover:bg-brand-500 group-hover:text-white">
+                        <Icon size={20} />
+                      </span>
+                      <span className="font-mono text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-brand-700">
+                        {module.eyebrow}
+                      </span>
+                    </div>
+                    <h3 className="mt-5 text-xl font-semibold text-slate-900 transition-colors group-hover:text-brand-700">
+                      {module.name}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      {module.description}
+                    </p>
+                  </div>
+                  <div className="mt-6 flex items-center gap-1.5 border-t border-brand-100/70 pt-4 text-xs font-semibold text-brand-700 group-hover:text-brand-800">
+                    <span>Launch {module.shortName} in Workspace</span>
+                    <ArrowUpRight
+                      size={14}
+                      className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    />
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      </Reveal>
 
       <Reveal><section id="product-journey" className="scroll-mt-24 pt-28"><div className="max-w-2xl"><p className="eyebrow">HOW THE PLATFORM FITS TOGETHER</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">A clearer way from scattered information to useful intelligence.</h2></div><div className="relative mt-12"><div className="absolute left-[8%] right-[8%] top-9 hidden h-px bg-brand-200 lg:block" /><motion.div animate={{ width: `${(visibleStage / (stages.length - 1)) * 84 + 8}%` }} transition={{ duration: reducedMotion ? 0 : 0.45 }} className="absolute left-[8%] top-9 hidden h-0.5 bg-brand-500 lg:block" /><div className="grid gap-4 lg:grid-cols-4">{stages.map((stage, index) => { const Icon = stage.icon; const active = visibleStage === index; return <motion.button key={stage.label} type="button" aria-pressed={selectedStage === index} onClick={() => setSelectedStage(index)} onMouseEnter={() => setHoveredStage(index)} onMouseLeave={() => setHoveredStage(null)} onFocus={() => setHoveredStage(index)} onBlur={() => setHoveredStage(null)} whileHover={reducedMotion ? undefined : { y: -4 }} whileTap={reducedMotion ? undefined : { scale: 0.99 }} className={`relative z-10 rounded-2xl border p-5 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-4 focus-visible:ring-offset-[#f5f5f1] ${active ? 'border-brand-400 bg-white shadow-panel' : 'border-brand-100 bg-white/45 hover:border-brand-300'}`}><span className={`grid h-9 w-9 place-items-center rounded-full border transition ${active ? 'border-brand-500 bg-brand-500 text-white' : 'border-brand-200 bg-brand-50 text-brand-500'}`}><Icon size={17} /></span><p className="mt-5 text-lg font-semibold text-slate-900">{stage.label}</p><p className="mt-2 text-sm leading-6 text-slate-600">{active ? stage.description : stage.title}</p>{active && <p className="mt-4 text-sm font-semibold text-brand-700">{stage.title}</p>}</motion.button>; })}</div></div></section></Reveal>
 
@@ -129,7 +254,7 @@ export default function ProductsPage() {
 
       <Reveal><section className="pt-32"><div className="mx-auto max-w-3xl text-center"><p className="eyebrow">FOR THE TEAMS WHO WANT TO GO DEEPER</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">Built for the teams who want to go deeper.</h2><p className="mt-5 leading-7 text-slate-600">Explore the technical concepts behind the customer experience when you are ready for more detail.</p></div><div className="mx-auto mt-10 max-w-4xl divide-y divide-brand-100 rounded-2xl border border-brand-100 bg-white/60">{technicalTopics.map(([title, body], index) => { const open = openTechnical === index; return <div key={title}><button type="button" aria-expanded={open} onClick={() => setOpenTechnical(open ? null : index)} className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left font-semibold text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-500 sm:px-7"><span>{title}</span><ChevronDown size={18} className={`shrink-0 text-brand-600 transition-transform ${open ? 'rotate-180' : ''}`} /></button><AnimatePresence initial={false}>{open && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: reducedMotion ? 0 : 0.22 }} className="overflow-hidden"><p className="px-5 pb-6 text-sm leading-7 text-slate-600 sm:px-7">{body}</p></motion.div>}</AnimatePresence></div>; })}</div></section></Reveal>
 
-      <Reveal><section className="mt-32 grid gap-8 overflow-hidden rounded-[2rem] border border-brand-300/60 bg-white shadow-panel lg:grid-cols-[0.95fr_1.05fr]"><div className="p-8 sm:p-12 lg:p-16"><p className="eyebrow">A CLEARER NEXT STEP</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">Find the clearest path for your data workflow.</h2><p className="mt-5 max-w-xl leading-7 text-slate-600">Bring us the workflow you want to improve, and we will help you find the most useful place to begin.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><EditorialButton href="/contact/" icon={<Workflow size={17} />}>See your workflow</EditorialButton><Button href="#product-journey" variant="ghost">Explore the platform <ArrowRight size={15} /></Button></div></div><div className="relative min-h-[300px] bg-cover bg-center" aria-hidden="true" style={{ backgroundImage: "linear-gradient(135deg, rgba(249,223,112,.72), rgba(255,253,242,.12)), url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80')" }}><div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/70 bg-white/80 p-5 text-sm font-semibold text-slate-800 backdrop-blur-md">Trusted data. Better decisions. Stronger AI foundations.</div></div></section></Reveal>
+      <Reveal><section className="mt-32 grid gap-8 overflow-hidden rounded-[2rem] border border-brand-300/60 bg-white shadow-panel lg:grid-cols-[0.95fr_1.05fr]"><div className="p-8 sm:p-12 lg:p-16"><p className="eyebrow">A CLEARER NEXT STEP</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">Launch your data engineering workspace today.</h2><p className="mt-5 max-w-xl leading-7 text-slate-600">Test ingestion pipelines, inspect data transformations, and experience the full capability of the DataSculpt platform.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><EditorialButton href="/dashboard/" icon={<ArrowUpRight size={17} />}>Launch Workspace & Ops Center</EditorialButton><Button href="/contact/" variant="ghost">Schedule Architecture Review <ArrowRight size={15} /></Button></div></div><div className="relative min-h-[300px] bg-cover bg-center" aria-hidden="true" style={{ backgroundImage: "linear-gradient(135deg, rgba(249,223,112,.72), rgba(255,253,242,.12)), url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80')" }}><div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/70 bg-white/80 p-5 text-sm font-semibold text-slate-800 backdrop-blur-md">Trusted data. Better decisions. Stronger AI foundations.</div></div></section></Reveal>
     </div>
   );
 }
@@ -137,12 +262,67 @@ export default function ProductsPage() {
 function ProductChapter({ product, index, reducedMotion }: { product: Product; index: number; reducedMotion: boolean | null }) {
   const Icon = product.icon;
   const reverse = index % 2 === 1;
-  return <Reveal><section id={product.id} className="scroll-mt-24"><div className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-16 ${reverse ? 'lg:[&>div:first-child]:order-2' : ''}`}><div><div className="flex items-center gap-3"><span className="grid h-11 w-11 place-items-center rounded-2xl border border-brand-200 bg-brand-50 text-brand-600"><Icon size={21} /></span><p className="eyebrow">0{index + 1} / 05 · {product.name}</p></div><p className="mt-8 text-sm font-semibold uppercase tracking-[0.14em] text-brand-600">{product.descriptor}</p><h2 className="mt-3 text-4xl font-semibold leading-tight tracking-[-0.04em] text-slate-900 sm:text-5xl">{product.headline}</h2><p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">{product.description}</p><ul className="mt-7 space-y-3">{product.capabilities.map((capability) => <li key={capability} className="flex gap-3 text-sm leading-6 text-slate-700"><Check size={18} className="mt-0.5 shrink-0 text-brand-600" />{capability}</li>)}</ul><p className="mt-7 max-w-lg border-l-2 border-brand-400 pl-4 text-sm leading-6 text-slate-500">{product.note}</p><Link href="/contact/" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 transition hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">Explore this capability <ArrowRight size={15} /></Link></div><ProductChapterVisual product={product} reducedMotion={reducedMotion} /></div></section></Reveal>;
+  const dashboardHref = product.id === 'flow-ops' ? '/dashboard/flow/' : `/dashboard/${product.id}/`;
+  const cleanName = product.name.replace('DataSculpt ', '').replace('™', '');
+
+  return (
+    <Reveal>
+      <section id={product.id} className="scroll-mt-24">
+        <div className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-16 ${reverse ? 'lg:[&>div:first-child]:order-2' : ''}`}>
+          <div>
+            <div className="flex items-center gap-3">
+              <span className="grid h-11 w-11 place-items-center rounded-2xl border border-brand-200 bg-brand-50 text-brand-600">
+                <Icon size={21} />
+              </span>
+              <p className="eyebrow">0{index + 1} / 05 · {product.name}</p>
+            </div>
+            <p className="mt-8 text-sm font-semibold uppercase tracking-[0.14em] text-brand-600">{product.descriptor}</p>
+            <h2 className="mt-3 text-4xl font-semibold leading-tight tracking-[-0.04em] text-slate-900 sm:text-5xl">{product.headline}</h2>
+            <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">{product.description}</p>
+            <ul className="mt-7 space-y-3">
+              {product.capabilities.map((capability) => (
+                <li key={capability} className="flex gap-3 text-sm leading-6 text-slate-700">
+                  <Check size={18} className="mt-0.5 shrink-0 text-brand-600" />
+                  {capability}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-7 max-w-lg border-l-2 border-brand-400 pl-4 text-sm leading-6 text-slate-500">{product.note}</p>
+            <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+              <Button href={dashboardHref} variant="primary" className="text-xs">
+                Launch {cleanName} in Workspace <ArrowUpRight size={14} />
+              </Button>
+              <Link href="/contact/" className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 transition hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">
+                Architecture review <ArrowRight size={13} />
+              </Link>
+            </div>
+          </div>
+          <ProductChapterVisual product={product} reducedMotion={reducedMotion} dashboardHref={dashboardHref} />
+        </div>
+      </section>
+    </Reveal>
+  );
 }
 
-function ProductChapterVisual({ product, reducedMotion }: { product: Product; reducedMotion: boolean | null }) {
+function ProductChapterVisual({ product, reducedMotion, dashboardHref }: { product: Product; reducedMotion: boolean | null; dashboardHref: string }) {
   const Icon = product.icon;
-  return <motion.div initial={{ opacity: 0, x: reducedMotion ? 0 : 22 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: reducedMotion ? 0 : 0.55 }} className="relative min-h-[360px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-50 p-6 sm:min-h-[430px] sm:p-9"><div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-brand-200/40 blur-3xl" /><div className="relative flex h-full min-h-[310px] flex-col justify-between"><div className="flex items-center justify-between"><span className="rounded-full bg-white/75 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">DataSculpt / {product.name.replace('DataSculpt ', '').replace('™', '')}</span><Icon size={22} className="text-brand-600" /></div><VisualContent id={product.id} /><div className="flex items-center gap-2 text-sm font-semibold text-brand-700"><CircleCheck size={17} />Ready for the next step</div></div></motion.div>;
+  return (
+    <motion.div initial={{ opacity: 0, x: reducedMotion ? 0 : 22 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: reducedMotion ? 0 : 0.55 }} className="relative min-h-[360px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-50 p-6 sm:min-h-[430px] sm:p-9">
+      <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-brand-200/40 blur-3xl" />
+      <div className="relative flex h-full min-h-[310px] flex-col justify-between">
+        <div className="flex items-center justify-between">
+          <span className="rounded-full bg-white/75 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">DataSculpt / {product.name.replace('DataSculpt ', '').replace('™', '')}</span>
+          <Icon size={22} className="text-brand-600" />
+        </div>
+        <VisualContent id={product.id} />
+        <Link href={dashboardHref} className="group inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-900 transition-colors">
+          <CircleCheck size={17} />
+          <span>Launch interactive module in Workspace</span>
+          <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </Link>
+      </div>
+    </motion.div>
+  );
 }
 
 function VisualContent({ id }: { id: ProductId }) {

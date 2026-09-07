@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, Globe2, Linkedin, Radio } from "lucide-react";
 
 const platformLinks = [
@@ -26,21 +27,26 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
         <div className="grid gap-10 rounded-2xl border border-slate-800 bg-slate-900/45 p-6 shadow-panel sm:p-8 lg:grid-cols-[1fr_0.85fr] lg:p-10">
           <div>
-            <div className="flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center rounded-xl border border-brand-400/50 bg-brand-400/10 text-brand-300">
-                <Radio size={19} />
-              </span>
-              <div>
-                <p className="text-lg font-bold tracking-tight text-white">
-                  DataSculpt
-                  <span className="ml-1.5 rounded bg-brand-400/10 px-1.5 py-0.5 font-mono text-[0.58rem] font-semibold tracking-wider text-brand-300">
-                    .lk
-                  </span>
-                </p>
-                <p className="font-mono text-[0.58rem] uppercase tracking-[0.18em] text-slate-600">
-                  Enterprise data, intelligently transformed.
-                </p>
-              </div>
+            <div className="space-y-3">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2.5 transition opacity-95 hover:opacity-100"
+                aria-label="DataSculpt home"
+              >
+                <Image
+                  src="/images/datasculpt_logo.webp"
+                  alt="DataSculpt"
+                  width={160}
+                  height={48}
+                  className="h-9 w-auto object-contain"
+                />
+                <span className="rounded bg-brand-400/15 px-1.5 py-0.5 font-mono text-[0.58rem] font-semibold tracking-wider text-brand-700">
+                  .lk
+                </span>
+              </Link>
+              <p className="font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[#64748b]">
+                Enterprise data, intelligently transformed.
+              </p>
             </div>
             <p className="mt-6 max-w-md text-sm leading-6 text-slate-400">
               A focused operating layer for high-throughput ingestion,
@@ -56,20 +62,22 @@ export function Footer() {
               DataSculpt helps teams make more of the information they already
               have.
             </p>
-            <Link
-              href="/products/"
-              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-300 transition hover:text-brand-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
-            >
-              See the platform <ArrowUpRight size={15} />
-            </Link>
-            <a
-              href="https://www.linkedin.com/company/data-sculpt/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-brand-300 transition hover:text-brand-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
-            >
-              Follow DataSculpt on LinkedIn <Linkedin size={15} />
-            </a>
+            <div className="flex mt-2 gap-4 justify-start items-center">
+              <Link
+                href="/products/"
+                className=" inline-flex items-center gap-2 text-sm font-semibold text-brand-300 transition hover:text-brand-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
+              >
+                See the platform <ArrowUpRight size={15} />
+              </Link>
+              <a
+                href="https://www.linkedin.com/company/data-sculpt/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className=" inline-flex items-center gap-2 text-sm font-semibold text-brand-300 transition hover:text-brand-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
+              >
+                Follow DataSculpt on <Linkedin size={15} />
+              </a>
+            </div>
           </div>
         </div>
 
@@ -77,21 +85,6 @@ export function Footer() {
           <FooterColumn title="Platform" links={platformLinks} />
           <FooterColumn title="Company" links={companyLinks} />
           <FooterColumn title="Trust & Legal" links={trustLinks} />
-          <div>
-            <h2 className="mb-4 font-mono text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-slate-500">
-              Engineering Stack
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              {["RAPIDS", "cuDF", "CUDA", "Apache Arrow"].map((item) => (
-                <span
-                  key={item}
-                  className="rounded-md border border-slate-800 bg-slate-900/70 px-2.5 py-1.5 font-mono text-[0.65rem] text-slate-400"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-5 border-t border-slate-800/80 pt-6 text-xs text-slate-500 md:flex-row md:items-center md:justify-between">

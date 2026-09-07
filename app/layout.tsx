@@ -11,6 +11,9 @@ const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', displ
 export const metadata: Metadata = {
   title: 'DataSculpt.lk | Enterprise AI Data Engineering',
   description: 'The intelligent data engineering and transformation platform for enterprise teams.',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

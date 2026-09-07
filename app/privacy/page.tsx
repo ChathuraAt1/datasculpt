@@ -52,7 +52,7 @@ const highlights: Highlight[] = [
     icon: Globe2,
   },
   {
-    title: "SOC 2 & Encryption at Rest",
+    title: "Encryption at Rest",
     description:
       "The policy framework covers AES-256 encryption at rest and TLS 1.3 in transit across ingestion nodes.",
     icon: LockKeyhole,
@@ -195,9 +195,7 @@ export default function PrivacyPage() {
           Privacy &amp; Data Protection Policy
         </h1>
         <p className="mt-4 font-mono text-sm text-slate-500">
-          Last Updated: August 2026{" "}
-          <span className="mx-2 text-brand-500">|</span> SOC 2 Type II &amp;
-          GDPR Compliant Framework
+          Last Updated: August 2026 GDPR Compliant Framework
         </p>
       </motion.header>
       <section className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -268,10 +266,6 @@ export default function PrivacyPage() {
                 </div>
               </div>
               <div className="space-y-4 md:text-right">
-                <StatusBadge>
-                  <ShieldCheck size={13} />
-                  SOC 2 TYPE II READY | ISO 27001 AUDITED
-                </StatusBadge>
                 <p className="max-w-sm text-xs leading-5 text-slate-500">
                   Reference status language subject to final audit and
                   enterprise documentation.

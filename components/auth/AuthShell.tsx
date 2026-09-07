@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Github, Globe2, LockKeyhole } from "lucide-react";
 import { apiBaseUrl } from "@/lib/auth";
 
@@ -20,6 +21,23 @@ export function AuthShell({
     <div className="mx-auto flex min-h-[calc(100vh-160px)] max-w-7xl items-center justify-center px-5 py-12 lg:px-8">
       <div className="grid w-full max-w-5xl gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-center">
         <div className="hidden lg:block">
+          <Link
+            href="/"
+            className="mb-8 inline-flex items-center gap-2.5 transition opacity-95 hover:opacity-100"
+            aria-label="DataSculpt home"
+          >
+            <Image
+              src="/images/datasculpt_logo.webp"
+              alt="DataSculpt"
+              width={160}
+              height={48}
+              className="h-10 w-auto object-contain"
+              priority
+            />
+            <span className="rounded bg-brand-400/15 px-1.5 py-0.5 font-mono text-[0.6rem] font-semibold tracking-wider text-brand-700">
+              .lk
+            </span>
+          </Link>
           <p className="eyebrow">DATASCULPT ACCESS</p>
           <h1 className="mt-5 text-5xl font-semibold leading-tight tracking-[-0.04em] text-white">
             The operating surface for{" "}
@@ -34,8 +52,29 @@ export function AuthShell({
         </div>
         <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-[0_0_30px_rgba(234,179,8,0.08)] backdrop-blur-xl sm:p-8">
           <div className="mb-7">
-            <p className="eyebrow">{eyebrow}</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
+            <div className="mb-6 flex items-center justify-between border-b border-brand-100/70 pb-4">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 transition opacity-95 hover:opacity-100"
+                aria-label="DataSculpt home"
+              >
+                <Image
+                  src="/images/datasculpt_logo.webp"
+                  alt="DataSculpt"
+                  width={130}
+                  height={39}
+                  className="h-8 w-auto object-contain"
+                  priority
+                />
+                <span className="rounded bg-brand-400/15 px-1.5 py-0.5 font-mono text-[0.56rem] font-semibold tracking-wider text-brand-700">
+                  .lk
+                </span>
+              </Link>
+              <span className="font-mono text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[#9a6500]">
+                {eyebrow}
+              </span>
+            </div>
+            <h2 className="text-3xl font-semibold tracking-tight text-white">
               {title}
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-400">
