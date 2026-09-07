@@ -302,7 +302,13 @@ export default function ContactPage() {
           className="relative mt-14 min-h-[390px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60 sm:min-h-[500px]"
           aria-hidden="true"
         >
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85')] bg-cover bg-center opacity-70" />
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-70"
+            style={{
+              backgroundImage:
+                "url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85')",
+            }}
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-50/95 via-brand-50/35 to-brand-900/20" />
           <div className="absolute bottom-7 left-7 max-w-md rounded-2xl border border-white bg-white/90 p-5 text-lg font-semibold leading-7 text-slate-900 shadow-panel backdrop-blur-md sm:bottom-10 sm:left-10 sm:p-7">
             The clearest path starts with the work you want to move forward.
@@ -495,7 +501,11 @@ export default function ContactPage() {
             <GlassCard className="overflow-hidden bg-white/70 p-0">
               <div className="relative min-h-[330px] bg-brand-100">
                 <div
-                  className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=85')] bg-cover bg-center opacity-65"
+                  className="absolute inset-0 bg-cover bg-center opacity-65"
+                  style={{
+                    backgroundImage:
+                      "url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=85')",
+                  }}
                   aria-hidden="true"
                 />
                 <div

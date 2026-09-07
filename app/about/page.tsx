@@ -257,7 +257,13 @@ export default function AboutPage() {
           className="relative mt-14 min-h-[430px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60 sm:min-h-[560px]"
           aria-hidden="true"
         >
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1800&q=85')] bg-cover bg-center opacity-60 mix-blend-multiply" />
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-60 mix-blend-multiply"
+            style={{
+              backgroundImage:
+                "url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1800&q=85')",
+            }}
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-50 via-brand-50/45 to-brand-900/20" />
           <div className="absolute bottom-7 left-7 max-w-md rounded-2xl border border-white/80 bg-white/80 p-5 text-slate-800 shadow-panel backdrop-blur-md sm:bottom-10 sm:left-10 sm:p-7">
             <p className="text-xs font-semibold uppercase tracking-[0.17em] text-brand-700">
@@ -275,7 +281,11 @@ export default function AboutPage() {
           <div className="grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
             <div className="relative min-h-[500px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60 sm:min-h-[600px]">
               <div
-                className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85')] bg-cover bg-center grayscale-[15%]"
+                className="absolute inset-0 bg-cover bg-center grayscale-[15%]"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85')",
+                }}
                 aria-hidden="true"
               />
               <div
@@ -452,7 +462,11 @@ export default function AboutPage() {
             </div>
             <div className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60">
               <div
-                className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85')] bg-cover bg-center opacity-55 mix-blend-multiply"
+                className="absolute inset-0 bg-cover bg-center opacity-55 mix-blend-multiply"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85')",
+                }}
                 aria-hidden="true"
               />
               <div
@@ -537,7 +551,11 @@ export default function AboutPage() {
             </div>
             <div className="relative min-h-[570px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60">
               <div
-                className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1500&q=85')] bg-cover bg-center opacity-65"
+                className="absolute inset-0 bg-cover bg-center opacity-65"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1500&q=85')",
+                }}
                 aria-hidden="true"
               />
               <div
@@ -726,7 +744,13 @@ export default function AboutPage() {
               className="relative min-h-[420px] bg-brand-100 sm:min-h-[520px] lg:min-h-[620px]"
               aria-hidden="true"
             >
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1400&q=90')] bg-cover bg-center opacity-75" />
+              <div
+                className="absolute inset-0 bg-cover bg-center opacity-75"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1400&q=90')",
+                }}
+              />
               <div className="absolute inset-0 bg-gradient-to-br from-brand-200/25 via-brand-700/10 to-slate-900/35" />
               <div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white bg-white/95 px-5 py-4 text-sm font-semibold text-slate-900 shadow-panel">
                 Trusted data. Better decisions. Stronger AI foundations.

@@ -31,30 +31,33 @@ export function OutcomeStatements() {
       className="px-5 py-20 lg:px-8 lg:py-28"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="relative min-h-[700px] overflow-hidden rounded-[2rem] border border-brand-200 bg-brand-100 shadow-panel sm:min-h-[620px] lg:min-h-[560px]">
+        <div className="relative min-h-[700px] overflow-hidden rounded-[2rem] border border-[#1e293b] bg-[#090d16] shadow-2xl sm:min-h-[620px] lg:min-h-[560px]">
           <div
-            className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1800&q=85')] bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-[center_35%] opacity-85"
+            style={{ backgroundImage: "url('/images/22.webp')" }}
             aria-hidden="true"
           />
           <div
-            className="absolute inset-0 bg-gradient-to-br from-yellow-50/95 via-yellow-50/60 to-brand-200/65"
+            className="absolute inset-0 bg-[linear-gradient(to_right,rgba(9,13,22,0.96)_0%,rgba(9,13,22,0.78)_48%,rgba(9,13,22,0.25)_100%)]"
             aria-hidden="true"
           />
           <div
-            className="absolute inset-0 bg-gradient-to-t from-brand-900/35 via-transparent to-yellow-50/25"
+            className="absolute inset-0 bg-[linear-gradient(to_top,rgba(9,13,22,0.9)_0%,rgba(9,13,22,0.3)_40%,transparent_100%)]"
             aria-hidden="true"
           />
           <div className="relative z-10 flex min-h-[700px] flex-col p-6 sm:min-h-[620px] sm:p-10 lg:min-h-[560px] lg:p-14">
             <Reveal>
               <div className="max-w-xl">
-                <p className="eyebrow">THE VALUE OF A BETTER FOUNDATION</p>
+                <p className="font-mono text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-[#fbbf24]">
+                  THE VALUE OF A BETTER FOUNDATION
+                </p>
                 <h2
                   id="outcomes-title"
-                  className="mt-4 text-4xl font-semibold leading-tight tracking-tight text-slate-800 sm:text-5xl"
+                  className="mt-4 text-4xl font-semibold leading-tight tracking-tight text-[#ffffff] sm:text-5xl"
                 >
                   The value is felt across the business.
                 </h2>
-                <p className="mt-5 max-w-lg text-base leading-7 text-slate-700">
+                <p className="mt-5 max-w-lg text-base leading-7 text-[#e2e8f0]">
                   When information is easier to trust and use, teams can spend
                   more energy moving the business forward.
                 </p>
@@ -66,23 +69,23 @@ export function OutcomeStatements() {
                   <motion.div
                     whileHover={reducedMotion ? undefined : { y: -6 }}
                     transition={{ duration: reducedMotion ? 0 : 0.22 }}
-                    className="group h-full rounded-2xl border border-white/80 bg-white/90 p-5 shadow-panel backdrop-blur-md transition hover:border-brand-400 hover:shadow-brand"
+                    className="group h-full rounded-2xl border border-[#1e293b]/90 bg-[#0f172a]/85 p-5 shadow-2xl backdrop-blur-md transition hover:border-[#f59e0b]/70 hover:bg-[#0f172a]/95"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <span
-                        className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-400 shadow-[0_0_14px_rgba(183,121,0,0.45)]"
+                        className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-[#f59e0b] shadow-[0_0_14px_rgba(245,158,11,0.6)]"
                         aria-hidden="true"
                       />
                       <ArrowUpRight
                         size={17}
-                        className="text-brand-500 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        className="text-[#fbbf24] transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                         aria-hidden="true"
                       />
                     </div>
-                    <h3 className="mt-6 text-lg font-semibold leading-6 text-slate-800">
+                    <h3 className="mt-6 text-lg font-semibold leading-6 text-[#ffffff]">
                       {outcome.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-600">
+                    <p className="mt-3 text-sm leading-6 text-[#cbd5e1]">
                       {outcome.description}
                     </p>
                   </motion.div>

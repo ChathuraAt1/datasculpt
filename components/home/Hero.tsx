@@ -59,8 +59,12 @@ export function Hero() {
         aria-hidden="true"
       />
       <motion.div
-        style={{ y: imageY, scale: imageScale }}
-        className="pointer-events-none absolute inset-x-0 bottom-[-5%] h-[72%] origin-bottom bg-[url('/visuals/data-landscape.svg')] bg-[length:100%_auto] bg-no-repeat bg-[center_top] opacity-95"
+        style={{
+          y: imageY,
+          scale: imageScale,
+          backgroundImage: "url('/visuals/data-landscape.svg')",
+        }}
+        className="pointer-events-none absolute inset-x-0 bottom-[-5%] h-[72%] origin-bottom bg-[length:100%_auto] bg-no-repeat bg-[center_top] opacity-95"
         aria-hidden="true"
       />
       <motion.div
