@@ -71,39 +71,36 @@ export function AIOutcomes() {
             ))}
           </div>
         </div>
-        <div className="order-1 flex items-center justify-center p-6 sm:p-10 lg:order-2 lg:py-20 lg:pr-[max(2rem,calc((100vw-80rem)/2))]">
-          <div className="relative w-full max-w-md overflow-hidden rounded-[2.5rem] border border-brand-300/80 bg-[#ffffff] shadow-2xl">
-            <div className="relative aspect-[322/500] w-full overflow-hidden bg-[#fbfaf5]">
-              <Image
-                src="/images/20.webp"
-                alt="AI Data Engineering and Transformation"
-                fill
-                sizes="(min-width: 1024px) 448px, 90vw"
-                className="object-cover object-top"
-                priority
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(9,13,22,0.85)_0%,rgba(9,13,22,0.2)_45%,transparent_100%)]" />
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={hovered ?? "default"}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: reducedMotion ? 0 : 0.2 }}
-                  className="absolute bottom-6 left-6 right-6 z-10 rounded-2xl border border-white/20 bg-black/65 p-5 shadow-2xl backdrop-blur-md"
-                >
-                  <p className="font-mono text-[0.62rem] font-semibold tracking-[0.2em] text-[#fbbf24]">
-                    AI-READY FOUNDATION
-                  </p>
-                  <p className="mt-2 text-xl font-semibold text-[#ffffff]">
-                    {hovered === null
-                      ? "Trusted data for what comes next."
-                      : phrases[hovered]}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
+        <div className="relative order-1 min-h-[500px] sm:min-h-[600px] lg:order-2 lg:min-h-full overflow-hidden">
+          <Image
+            src="/images/20.jpg"
+            alt="AI Data Engineering and Transformation"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover object-top"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-yellow-50/80 via-yellow-50/15 to-transparent hidden lg:block" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(9,13,22,0.85)_0%,rgba(9,13,22,0.2)_40%,transparent_100%)]" />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={hovered ?? "default"}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: reducedMotion ? 0 : 0.2 }}
+              className="absolute bottom-8 left-6 right-6 z-10 max-w-sm rounded-2xl border border-white/20 bg-black/75 p-5 shadow-2xl backdrop-blur-md lg:bottom-12 lg:left-10"
+            >
+              <p className="font-mono text-[0.62rem] font-semibold tracking-[0.2em] text-[#fbbf24]">
+                AI-READY FOUNDATION
+              </p>
+              <p className="mt-2 text-xl font-semibold text-[#ffffff]">
+                {hovered === null
+                  ? "Trusted data for what comes next."
+                  : phrases[hovered]}
+              </p>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

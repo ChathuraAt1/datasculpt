@@ -19,7 +19,7 @@ export function Challenges() {
           <div className="relative min-h-[500px] overflow-hidden rounded-[2rem] border border-[#1e293b] bg-[#090d16] p-7 shadow-2xl sm:min-h-[560px] sm:p-10">
             <div
               className="absolute inset-0 bg-cover bg-[center_top] opacity-85"
-              style={{ backgroundImage: "url('/images/18.webp')" }}
+              style={{ backgroundImage: "url('/images/18.jpg')" }}
               aria-hidden="true"
             />
             <div

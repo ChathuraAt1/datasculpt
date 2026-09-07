@@ -34,7 +34,7 @@ export function OutcomeStatements() {
         <div className="relative min-h-[700px] overflow-hidden rounded-[2rem] border border-[#1e293b] bg-[#090d16] shadow-2xl sm:min-h-[620px] lg:min-h-[560px]">
           <div
             className="absolute inset-0 bg-cover bg-[center_35%] opacity-85"
-            style={{ backgroundImage: "url('/images/22.webp')" }}
+            style={{ backgroundImage: "url('/images/22.jpg')" }}
             aria-hidden="true"
           />
           <div
