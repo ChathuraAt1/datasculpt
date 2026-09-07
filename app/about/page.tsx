@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { FaLinkedin } from "react-icons/fa6";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -222,6 +223,16 @@ export default function AboutPage() {
                 Company Profiles:
               </span>
               <a
+                href="https://www.linkedin.com/company/data-sculpt/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-brand-200/90 bg-white/85 px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur-sm transition hover:border-brand-400 hover:bg-white hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+              >
+                <FaLinkedin size={15} className="text-[#0a66c2]" />
+                <span>LinkedIn</span>
+                <ArrowUpRight size={13} className="text-slate-400" />
+              </a>
+              <a
                 href="https://www.crunchbase.com/organization/datasculpt-6d0b"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -341,97 +352,6 @@ export default function AboutPage() {
               <p className="mt-5 text-xs font-semibold uppercase tracking-[0.15em] text-brand-600">
                 Founder perspective and company vision
               </p>
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section className="pt-24">
-          <div className="rounded-[2rem] border border-brand-200/80 bg-gradient-to-br from-white via-brand-50/40 to-white p-7 shadow-panel sm:p-9">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <p className="eyebrow">COMPANY DIRECTORIES & ECOSYSTEM</p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-slate-900 sm:text-3xl">
-                  Explore DataSculpt across global startup networks.
-                </h2>
-                <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600">
-                  Track our company overview, technology focus, and founder milestones on recognized venture and startup platforms.
-                </p>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <a
-                  href="https://www.crunchbase.com/organization/datasculpt-6d0b"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-3.5 rounded-xl border border-brand-200/90 bg-white p-4 shadow-sm transition hover:border-brand-400 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
-                >
-                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-slate-200 bg-slate-50 p-2 shadow-sm transition group-hover:border-brand-300 group-hover:bg-brand-50/60">
-                    <img
-                      src="https://www.crunchbase.com/favicon.ico"
-                      alt="Crunchbase favicon"
-                      width={22}
-                      height={22}
-                      className="h-5 w-5 object-contain"
-                      onError={(e) => {
-                        e.currentTarget.src =
-                          "https://www.google.com/s2/favicons?domain=crunchbase.com&sz=64";
-                      }}
-                    />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-1.5 font-semibold text-slate-900 group-hover:text-brand-700">
-                      <span>Crunchbase</span>
-                      <ArrowUpRight
-                        size={15}
-                        className="text-slate-400 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-600"
-                      />
-                    </div>
-                    <p className="truncate font-mono text-[0.7rem] text-slate-500">
-                      datasculpt-6d0b
-                    </p>
-                    <p className="mt-1 text-xs font-medium text-brand-700">
-                      Company & venture profile
-                    </p>
-                  </div>
-                </a>
-
-                <a
-                  href="https://www.f6s.com/datasculpt"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-3.5 rounded-xl border border-brand-200/90 bg-white p-4 shadow-sm transition hover:border-brand-400 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
-                >
-                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-slate-200 bg-slate-50 p-2 shadow-sm transition group-hover:border-brand-300 group-hover:bg-brand-50/60">
-                    <img
-                      src="https://www.f6s.com/favicon.ico"
-                      alt="F6S favicon"
-                      width={22}
-                      height={22}
-                      className="h-5 w-5 object-contain"
-                      onError={(e) => {
-                        e.currentTarget.src =
-                          "https://www.google.com/s2/favicons?domain=f6s.com&sz=64";
-                      }}
-                    />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-1.5 font-semibold text-slate-900 group-hover:text-brand-700">
-                      <span>F6S</span>
-                      <ArrowUpRight
-                        size={15}
-                        className="text-slate-400 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-600"
-                      />
-                    </div>
-                    <p className="truncate font-mono text-[0.7rem] text-slate-500">
-                      datasculpt
-                    </p>
-                    <p className="mt-1 text-xs font-medium text-brand-700">
-                      Startup community profile
-                    </p>
-                  </div>
-                </a>
-              </div>
             </div>
           </div>
         </section>

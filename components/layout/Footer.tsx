@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, Globe2, Linkedin, Radio } from "lucide-react";
+import { ArrowUpRight, Globe2, Radio } from "lucide-react";
+import { FaLinkedin } from "react-icons/fa6";
 
 const platformLinks = [
   ["Products", "/products/"],
@@ -75,7 +76,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className=" inline-flex items-center gap-2 text-sm font-semibold text-brand-300 transition hover:text-brand-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
               >
-                Follow DataSculpt on <Linkedin size={15} />
+                Follow DataSculpt on <FaLinkedin size={16} />
               </a>
             </div>
           </div>
@@ -99,7 +100,7 @@ export function Footer() {
               className="inline-flex items-center gap-1.5 text-xs text-slate-400 transition hover:text-brand-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
               aria-label="DataSculpt on LinkedIn"
             >
-              <Linkedin size={14} className="text-brand-300" />
+              <FaLinkedin size={15} className="text-brand-300" />
               <span>LinkedIn</span>
             </a>
             <label className="flex items-center gap-2 text-slate-400">

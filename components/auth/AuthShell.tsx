@@ -3,7 +3,9 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Github, Globe2, LockKeyhole } from "lucide-react";
+import { LockKeyhole } from "lucide-react";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa6";
 import { apiBaseUrl } from "@/lib/auth";
 
 export function AuthShell({
@@ -95,17 +97,17 @@ export function OAuthButtons() {
       <a
         href={base ? `${base}/api/auth/google/redirect` : undefined}
         aria-disabled={!base}
-        className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:border-brand-500/60 hover:text-brand-200 aria-disabled:pointer-events-none aria-disabled:opacity-50"
+        className="inline-flex items-center justify-center gap-2.5 rounded-lg border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:border-brand-500/60 hover:text-brand-200 aria-disabled:pointer-events-none aria-disabled:opacity-50"
       >
-        <Globe2 size={16} />
+        <FcGoogle size={18} />
         Continue with Google
       </a>
       <a
         href={base ? `${base}/api/auth/github/redirect` : undefined}
         aria-disabled={!base}
-        className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:border-brand-500/60 hover:text-brand-200 aria-disabled:pointer-events-none aria-disabled:opacity-50"
+        className="inline-flex items-center justify-center gap-2.5 rounded-lg border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:border-brand-500/60 hover:text-brand-200 aria-disabled:pointer-events-none aria-disabled:opacity-50"
       >
-        <Github size={16} />
+        <FaGithub size={17} />
         Continue with GitHub
       </a>
     </div>

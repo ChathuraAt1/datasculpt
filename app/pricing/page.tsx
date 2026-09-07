@@ -577,7 +577,7 @@ function PlanCard({
   price: string;
   recommended: boolean;
 }) {
-  const custom = price === "Custom";
+  const custom = plan.slug === "enterprise";
   const cta = custom
     ? "Enterprise - custom"
     : plan.name === "Developer"
@@ -617,7 +617,7 @@ function PlanCard({
         </p>
         <div className="mt-6 flex items-end gap-2">
           <span className="text-4xl font-extrabold text-slate-900">
-            {price}
+            {plan.slug === "enterprise" ? "Custom" : price}
           </span>
           {!custom && (
             <span className="mb-1 text-sm text-slate-500">
