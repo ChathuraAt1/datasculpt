@@ -180,19 +180,7 @@ export default function AboutPage() {
               <ChevronRight size={14} />
               <span className="text-brand-600">About DataSculpt</span>
             </Link>
-            <div className="mt-8 mb-4 inline-flex items-center gap-2.5">
-              <Image
-                src="/images/datasculpt_logo.webp"
-                alt="DataSculpt"
-                width={150}
-                height={45}
-                className="h-9 w-auto object-contain"
-                priority
-              />
-              <span className="rounded bg-brand-400/15 px-2 py-0.5 font-mono text-[0.6rem] font-semibold tracking-wider text-brand-700">
-                .lk
-              </span>
-            </div>
+
             <p className="eyebrow mt-2">THE DATASCULPT STORY</p>
             <h1 className="mt-4 max-w-4xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.06em] text-slate-900 sm:text-6xl lg:text-7xl">
               Enterprise AI begins with data people can trust.
@@ -279,22 +267,22 @@ export default function AboutPage() {
 
       <Reveal>
         <div
-          className="relative mt-14 min-h-[430px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60 sm:min-h-[560px]"
+          className="relative mt-14 min-h-[430px] overflow-hidden rounded-[2rem] border border-brand-200/70 bg-brand-50/50 shadow-sm sm:min-h-[560px]"
           aria-hidden="true"
         >
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-60 mix-blend-multiply"
+            className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1800&q=85')",
+                "url('/images/AboutEnterprise AI begins with data people can trust. image.webp')",
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-50 via-brand-50/45 to-brand-900/20" />
-          <div className="absolute bottom-7 left-7 max-w-md rounded-2xl border border-white/80 bg-white/80 p-5 text-slate-800 shadow-panel backdrop-blur-md sm:bottom-10 sm:left-10 sm:p-7">
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
+          <div className="absolute bottom-7 left-7 max-w-md rounded-2xl border border-white bg-white/95 p-5 text-slate-900 shadow-panel backdrop-blur-md sm:bottom-10 sm:left-10 sm:p-7">
             <p className="text-xs font-semibold uppercase tracking-[0.17em] text-brand-700">
               A clearer foundation
             </p>
-            <p className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
+            <p className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
               Build the conditions for better work.
             </p>
           </div>
@@ -303,25 +291,25 @@ export default function AboutPage() {
 
       <Reveal>
         <section id="founder-story" className="scroll-mt-24 pt-28">
-          <div className="grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-            <div className="relative min-h-[500px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60 sm:min-h-[600px]">
-              <div
-                className="absolute inset-0 bg-cover bg-center grayscale-[15%]"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85')",
-                }}
-                aria-hidden="true"
+          <div className="grid items-stretch gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+            <div className="relative min-h-[560px] overflow-hidden rounded-[2rem] border border-brand-200/70 bg-brand-50/50 shadow-sm sm:min-h-[640px] lg:min-h-[700px]">
+              <Image
+                src="/images/Build the foundation before asking AI to make decisions.webp"
+                alt="The person behind the build - DataSculpt founder perspective"
+                fill
+                priority
+                className="object-cover object-top"
+                sizes="(min-width: 1024px) 45vw, 100vw"
               />
               <div
-                className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-brand-900/10 to-transparent"
+                className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-slate-950/10 to-transparent"
                 aria-hidden="true"
               />
-              <div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white/70 bg-white/85 p-5 backdrop-blur-md">
+              <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white bg-white/95 p-5 shadow-panel backdrop-blur-md sm:bottom-8 sm:left-8 sm:right-8">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-700">
                   THE PERSON BEHIND THE BUILD
                 </p>
-                <p className="mt-2 text-lg font-semibold text-slate-800">
+                <p className="mt-2 text-lg font-semibold text-slate-900">
                   Built With Purpose
                 </p>
                 <p className="mt-1 text-sm text-slate-600">
@@ -394,20 +382,20 @@ export default function AboutPage() {
                 See the platform approach <ArrowRight size={15} />
               </Link>
             </div>
-            <div className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60">
+            <div className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-brand-200/70 bg-brand-50/50 shadow-sm sm:min-h-[480px]">
               <div
-                className="absolute inset-0 bg-cover bg-center opacity-55 mix-blend-multiply"
+                className="absolute inset-0 bg-cover bg-center"
                 style={{
                   backgroundImage:
-                    "url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85')",
+                    "url('/images/The future is being slowed down by information that is difficult to use.webp')",
                 }}
                 aria-hidden="true"
               />
               <div
-                className="absolute inset-0 bg-gradient-to-t from-brand-900/55 via-brand-100/15 to-brand-50/45"
+                className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent"
                 aria-hidden="true"
               />
-              <div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white/75 bg-white/80 p-5 text-sm font-semibold leading-6 text-slate-800 backdrop-blur-md">
+              <div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white bg-white/95 p-5 text-sm font-semibold leading-6 text-slate-900 shadow-panel backdrop-blur-md">
                 A dependable foundation gives every team more room to move.
               </div>
             </div>
@@ -483,17 +471,17 @@ export default function AboutPage() {
                 })}
               </div>
             </div>
-            <div className="relative min-h-[570px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60">
+            <div className="relative min-h-[570px] overflow-hidden rounded-[2rem] border border-brand-200/70 bg-brand-50/50 shadow-sm">
               <div
-                className="absolute inset-0 bg-cover bg-center opacity-65"
+                className="absolute inset-0 bg-cover bg-center"
                 style={{
                   backgroundImage:
-                    "url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1500&q=85')",
+                    "url('/images/Different disciplines. One clearer direction.webp')",
                 }}
                 aria-hidden="true"
               />
               <div
-                className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-950/10 to-brand-900/15"
+                className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent"
                 aria-hidden="true"
               />
               <AnimatePresence mode="wait">
@@ -675,18 +663,18 @@ export default function AboutPage() {
               </p>
             </div>
             <div
-              className="relative min-h-[420px] bg-brand-100 sm:min-h-[520px] lg:min-h-[620px]"
+              className="relative min-h-[420px] bg-brand-50/50 sm:min-h-[520px] lg:min-h-[620px]"
               aria-hidden="true"
             >
               <div
-                className="absolute inset-0 bg-cover bg-center opacity-75"
+                className="absolute inset-0 bg-cover bg-center"
                 style={{
                   backgroundImage:
-                    "url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1400&q=90')",
+                    "url('/images/Build a better foundation for enterprise AI.webp')",
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-200/25 via-brand-700/10 to-slate-900/35" />
-              <div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white bg-white/95 px-5 py-4 text-sm font-semibold text-slate-900 shadow-panel">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent" />
+              <div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white bg-white/95 px-5 py-4 text-sm font-semibold text-slate-900 shadow-panel backdrop-blur-md">
                 Trusted data. Better decisions. Stronger AI foundations.
               </div>
             </div>

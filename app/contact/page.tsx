@@ -299,18 +299,15 @@ export default function ContactPage() {
       </Reveal>
       <Reveal>
         <div
-          className="relative mt-14 min-h-[390px] overflow-hidden rounded-[2rem] border border-brand-100 bg-brand-100/60 sm:min-h-[500px]"
+          className="relative mt-14 min-h-[390px] overflow-hidden rounded-[2rem] border border-brand-200/70 bg-brand-50/50 shadow-sm sm:min-h-[500px]"
           aria-hidden="true"
         >
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-70"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85')",
-            }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/images/contact.webp')" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-50/95 via-brand-50/35 to-brand-900/20" />
-          <div className="absolute bottom-7 left-7 max-w-md rounded-2xl border border-white bg-white/90 p-5 text-lg font-semibold leading-7 text-slate-900 shadow-panel backdrop-blur-md sm:bottom-10 sm:left-10 sm:p-7">
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
+          <div className="absolute bottom-7 left-7 max-w-md rounded-2xl border border-white bg-white/95 p-5 text-lg font-semibold leading-7 text-slate-900 shadow-panel backdrop-blur-md sm:bottom-10 sm:left-10 sm:p-7">
             The clearest path starts with the work you want to move forward.
           </div>
         </div>
@@ -498,21 +495,21 @@ export default function ContactPage() {
         </Reveal>
         <Reveal delay={reducedMotion ? 0 : 0.08}>
           <div className="space-y-5">
-            <GlassCard className="overflow-hidden bg-white/70 p-0">
-              <div className="relative min-h-[330px] bg-brand-100">
+            <GlassCard className="overflow-hidden bg-white/70 p-0 shadow-panel">
+              <div className="relative min-h-[380px] bg-brand-50/50 sm:min-h-[420px]">
                 <div
-                  className="absolute inset-0 bg-cover bg-center opacity-65"
+                  className="absolute inset-0 bg-cover bg-center"
                   style={{
                     backgroundImage:
-                      "url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=85')",
+                      "url('/images/Tell us what is slowing the current workflow down.webp')",
                   }}
                   aria-hidden="true"
                 />
                 <div
-                  className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-brand-200/15"
+                  className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-transparent"
                   aria-hidden="true"
                 />
-                <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white bg-white/95 p-5 shadow-panel">
+                <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white bg-white/95 p-5 shadow-panel backdrop-blur-md">
                   <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-800">
                     ARCHITECTURE PERSPECTIVE
                   </p>
