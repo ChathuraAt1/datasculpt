@@ -1,7 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Globe2, Radio } from "lucide-react";
-import { FaLinkedin } from "react-icons/fa6";
+import {
+  FaLinkedin,
+  FaFacebook,
+  FaXTwitter,
+  FaPinterest,
+  FaYoutube,
+} from "react-icons/fa6";
 
 const platformLinks = [
   ["Products", "/products/"],
@@ -16,6 +22,28 @@ const companyLinks = [
   ["Crunchbase", "https://www.crunchbase.com/organization/datasculpt-6d0b"],
   ["F6S", "https://www.f6s.com/datasculpt"],
 ] as const;
+const socialLinks = [
+  {
+    icon: <FaFacebook size={24} />,
+    name: "Facebook",
+    url: "https://www.facebook.com/datasculpt/",
+  },
+  {
+    icon: <FaPinterest size={24} />,
+    name: "Pinterest",
+    url: "https://www.pinterest.com/datasculpt/",
+  },
+  {
+    icon: <FaYoutube size={24} />,
+    name: "Youtube",
+    url: "https://www.youtube.com/@datasculpt1",
+  },
+  {
+    icon: <FaXTwitter size={24} />,
+    name: "X",
+    url: "https://x.com/datasculpt01",
+  },
+];
 
 const trustLinks = [
   ["Privacy Policy", "/privacy/"],
@@ -86,6 +114,21 @@ export function Footer() {
           <FooterColumn title="Platform" links={platformLinks} />
           <FooterColumn title="Company" links={companyLinks} />
           <FooterColumn title="Trust & Legal" links={trustLinks} />
+          {/* Different social icon footer colmun horizontal */}
+          <div className="">
+            {socialLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center p-2 gap-1.5 text-xs text-slate-400 transition hover:text-brand-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
+                aria-label={link.name}
+              >
+                {link.icon}
+              </a>
+            ))}
+          </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-5 border-t border-slate-800/80 pt-6 text-xs text-slate-500 md:flex-row md:items-center md:justify-between">
