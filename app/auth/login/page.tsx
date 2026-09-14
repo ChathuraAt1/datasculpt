@@ -11,23 +11,23 @@ import {
   AuthShell,
   OAuthButtons,
 } from "@/components/auth/AuthShell";
+import { GuestGuard } from "@/components/auth/GuestGuard";
 import { errorMessage } from "@/lib/auth";
 import { useAuth } from "@/components/auth/AuthContext";
 
 export default function LoginPage() {
-  const { login, isAuthenticated, loading } = useAuth();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [next, setNext] = useState("/dashboard/");
+
   useEffect(() => {
     const value = new URLSearchParams(window.location.search).get("next");
     if (value?.startsWith("/")) setNext(value);
   }, []);
-  useEffect(() => {
-    if (!loading && isAuthenticated) window.location.replace(next);
-  }, [loading, isAuthenticated, next]);
+
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitting(true);
@@ -46,13 +46,15 @@ export default function LoginPage() {
       setSubmitting(false);
     }
   }
+
   return (
-    <AuthShell
-      eyebrow="SECURE SIGN IN"
-      title="Welcome back."
-      description="Sign in to manage your DataSculpt workspace and enterprise data operations."
-    >
-      <OAuthButtons />
+    <GuestGuard fallbackUrl={next}>
+      <AuthShell
+        eyebrow="SECURE SIGN IN"
+        title="Welcome back."
+        description="Sign in to manage your DataSculpt workspace and enterprise data operations."
+      >
+        <OAuthButtons />
       <AuthDivider />
       {error && <AuthMessage error>{error}</AuthMessage>}
       <form onSubmit={submit} className="space-y-5">
@@ -99,5 +101,6 @@ export default function LoginPage() {
         Explore the platform <ArrowRight size={13} />
       </Link>
     </AuthShell>
+  </GuestGuard>
   );
 }

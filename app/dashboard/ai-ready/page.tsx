@@ -1,11 +1,12 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import { Bot, Copy, LoaderCircle, Send, Sparkles } from 'lucide-react';
+import { LoaderCircle, Send, Sparkles } from 'lucide-react';
 import { useAuth } from '@/components/auth/AuthContext';
 import { useWorkspace } from '@/components/dashboard/WorkspaceContext';
 import { AccessNotice, WorkspaceButton, WorkspacePageHeader, WorkspacePanel } from '@/components/dashboard/WorkspaceUI';
 import { PlanUpgradeGate } from '@/components/dashboard/PlanUpgradeGate';
+import { MarkdownPreview } from '@/components/dashboard/MarkdownPreview';
 import { AuthApiError, authRequest } from '@/lib/auth';
 import { renderAiResult } from '@/lib/ai';
 
@@ -24,7 +25,6 @@ export default function AiReadyWorkspacePage() {
   const [output, setOutput] = useState('');
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const [copied, setCopied] = useState(false);
 
   async function generate(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -40,13 +40,6 @@ export default function AiReadyWorkspacePage() {
       else if (requestError instanceof AuthApiError && requestError.status === 422) setError('Review the prompt and token limit, then try again.');
       else setError(requestError instanceof Error ? requestError.message : 'The AI preparation request could not be completed.');
     } finally { setSubmitting(false); }
-  }
-
-  async function copyOutput() {
-    if (!output) return;
-    await navigator.clipboard.writeText(output);
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1600);
   }
 
   return (
@@ -130,30 +123,15 @@ export default function AiReadyWorkspacePage() {
                 {error}
               </div>
             )}
-            <div className="mt-6 min-h-[280px] rounded-2xl bg-[#211f19] p-5 text-[#ece5d3]">
-              <div className="flex items-center justify-between border-b border-[#3d392d] pb-4">
-                <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#d9b642]">
-                  <Bot size={15} />Generated preparation guidance
-                </span>
-                <button
-                  type="button"
-                  disabled={!output}
-                  onClick={() => void copyOutput()}
-                  className="inline-flex items-center gap-2 text-xs text-[#bdb5a2] hover:text-[#f2d366] disabled:opacity-40"
-                >
-                  <Copy size={14} />{copied ? 'Copied' : 'Copy'}
-                </button>
-              </div>
-              {output ? (
-                <pre aria-live="polite" className="mt-5 whitespace-pre-wrap font-sans text-sm leading-7 text-[#ece5d3]">
-                  {output}
-                </pre>
-              ) : (
-                <p className="mt-5 text-sm leading-6 text-[#aaa18d]">
-                  {entitlement.enabled ? 'Your synchronous result will appear here after submission.' : 'Upgrade to Professional or higher to use the AI preparation request surface.'}
-                </p>
-              )}
-            </div>
+            <MarkdownPreview
+              content={output}
+              emptyMessage={
+                entitlement.enabled
+                  ? 'Your synchronous result will appear here after submission.'
+                  : 'Upgrade to Professional or higher to use the AI preparation request surface.'
+              }
+              isGenerating={submitting}
+            />
           </WorkspacePanel>
         </section>
       </PlanUpgradeGate>

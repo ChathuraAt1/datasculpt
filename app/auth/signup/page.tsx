@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import { UserPlus } from 'lucide-react';
 import { AuthDivider, AuthField, AuthLinks, AuthMessage, AuthShell, OAuthButtons } from '@/components/auth/AuthShell';
 import { PasswordStrengthMeter } from '@/components/auth/PasswordStrengthMeter';
+import { GuestGuard } from '@/components/auth/GuestGuard';
 import { errorMessage } from '@/lib/auth';
 import { useAuth } from '@/components/auth/AuthContext';
 
@@ -62,12 +63,13 @@ export default function SignupPage() {
   }
 
   return (
-    <AuthShell
-      eyebrow="CREATE WORKSPACE ACCESS"
-      title="Start building with DataSculpt."
-      description="Create an account for your data engineering workspace. Your password is hashed in the browser before it is sent to the API."
-    >
-      <OAuthButtons />
+    <GuestGuard fallbackUrl={next}>
+      <AuthShell
+        eyebrow="CREATE WORKSPACE ACCESS"
+        title="Start building with DataSculpt."
+        description="Create an account for your data engineering workspace. Your password is hashed in the browser before it is sent to the API."
+      >
+        <OAuthButtons />
       <AuthDivider />
       {error && <AuthMessage error>{error}</AuthMessage>}
       {message && <AuthMessage>{message}</AuthMessage>}
@@ -144,5 +146,6 @@ export default function SignupPage() {
       </form>
       <AuthLinks signup />
     </AuthShell>
+    </GuestGuard>
   );
 }
