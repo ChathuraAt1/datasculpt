@@ -45,7 +45,7 @@ export default function CheckoutSuccessPage() {
           {verification === 'verified' && <p className="mt-6 text-sm font-semibold text-brand-700">Transaction verified successfully.</p>}
           {verification === 'unavailable' && <p className="mx-auto mt-6 max-w-lg text-sm leading-6 text-slate-600">Your payment request was submitted. We could not verify the transaction details yet.</p>}
         </>}
-        <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row"><Link href="/dashboard/" className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-brand-600">Open workspace <ArrowRight size={15} /></Link><Link href="/products/" className="inline-flex items-center justify-center gap-2 rounded-xl border border-brand-200 bg-white px-5 py-3 text-sm font-semibold text-brand-700 hover:border-brand-400">Explore the platform <ArrowRight size={15} /></Link></div>
+        <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row"><Link href="/dashboard/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-brand-600">Open workspace <ArrowRight size={15} /></Link><Link href="/products/" className="inline-flex items-center justify-center gap-2 rounded-xl border border-brand-200 bg-white px-5 py-3 text-sm font-semibold text-brand-700 hover:border-brand-400">Explore the platform <ArrowRight size={15} /></Link></div>
       </GlassCard>
     </Reveal>
   </div>;

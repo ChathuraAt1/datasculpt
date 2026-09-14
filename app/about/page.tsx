@@ -504,7 +504,7 @@ export default function AboutPage() {
                     {discipline.description}
                   </p>
                   <p className="mt-5 text-xs text-slate-600">
-                    Illustrative team discipline — not an employee profile.
+                    Illustrative team discipline not an employee profile.
                   </p>
                 </motion.div>
               </AnimatePresence>
@@ -528,7 +528,7 @@ export default function AboutPage() {
               </p>
               <div className="mt-7 flex items-center gap-3 rounded-xl border border-brand-200 bg-brand-50 p-4 text-sm font-semibold text-brand-700">
                 <Target size={18} />
-                Vision reference — not independently verified company history
+                Vision reference not independently verified company history
               </div>
             </div>
             <div className="grid gap-5 md:grid-cols-[0.72fr_1.28fr]">
@@ -614,7 +614,7 @@ export default function AboutPage() {
                 ))}
               </div>
               <p className="mt-6 text-xs leading-5 text-slate-500">
-                Infrastructure vision and reference model — not live deployment
+                Infrastructure vision and reference model not live deployment
                 telemetry.
               </p>
             </div>

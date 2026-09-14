@@ -216,9 +216,9 @@ export default function ArchitecturePage() {
           </span>
         </h1>
         <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-slate-400 sm:text-lg">
-          Explore DataSculpt&apos;s 4-layer hardware-accelerated
-          architecture—from streaming ingestion and zero-copy Apache Arrow
-          memory to CUDA GPU compute cores and vector DB outputs.
+          Explore DataSculpt&apos;s 4-layer hardware-accelerated architecture
+          from streaming ingestion and zero-copy Apache Arrow memory to CUDA GPU
+          compute cores and vector DB outputs.
         </p>
       </motion.div>
 
@@ -320,7 +320,7 @@ export default function ArchitecturePage() {
         >
           <Box size={14} className="text-brand-400" />
           <span>
-            Whitepaper reference placeholder — technical materials will be
+            Whitepaper reference placeholder technical materials will be
             published here.
           </span>
         </div>

@@ -174,7 +174,7 @@ export default function ProductsPage() {
           <div className="lg:pb-2">
             <p className="max-w-xl text-lg leading-8 text-slate-600">DataSculpt helps teams create trusted, usable information for better decisions, stronger workflows, and enterprise AI that can work with real business context.</p>
             <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <EditorialButton href="/dashboard/" icon={<ArrowUpRight size={17} />}>
+              <EditorialButton href="/dashboard/" target="_blank" rel="noopener noreferrer" icon={<ArrowUpRight size={17} />}>
                 Launch Ops Center
               </EditorialButton>
               <Link
@@ -202,7 +202,7 @@ export default function ProductsPage() {
                 Launch directly into live operations, schema transformation, compute planning, validation checks, and AI feature engineering.
               </p>
             </div>
-            <EditorialButton href="/dashboard/" icon={<ArrowUpRight size={17} />}>
+            <EditorialButton href="/dashboard/" target="_blank" rel="noopener noreferrer" icon={<ArrowUpRight size={17} />}>
               Open Full Workspace
             </EditorialButton>
           </div>
@@ -214,6 +214,8 @@ export default function ProductsPage() {
                 <Link
                   key={module.id}
                   href={module.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group relative flex flex-col justify-between rounded-2xl border border-brand-200/80 bg-white/80 p-6 shadow-sm backdrop-blur-md transition hover:-translate-y-1 hover:border-brand-400 hover:shadow-panel"
                 >
                   <div>
@@ -254,7 +256,7 @@ export default function ProductsPage() {
 
       <Reveal><section className="pt-32"><div className="mx-auto max-w-3xl text-center"><p className="eyebrow">FOR THE TEAMS WHO WANT TO GO DEEPER</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">Built for the teams who want to go deeper.</h2><p className="mt-5 leading-7 text-slate-600">Explore the technical concepts behind the customer experience when you are ready for more detail.</p></div><div className="mx-auto mt-10 max-w-4xl divide-y divide-brand-100 rounded-2xl border border-brand-100 bg-white/60">{technicalTopics.map(([title, body], index) => { const open = openTechnical === index; return <div key={title}><button type="button" aria-expanded={open} onClick={() => setOpenTechnical(open ? null : index)} className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left font-semibold text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-500 sm:px-7"><span>{title}</span><ChevronDown size={18} className={`shrink-0 text-brand-600 transition-transform ${open ? 'rotate-180' : ''}`} /></button><AnimatePresence initial={false}>{open && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: reducedMotion ? 0 : 0.22 }} className="overflow-hidden"><p className="px-5 pb-6 text-sm leading-7 text-slate-600 sm:px-7">{body}</p></motion.div>}</AnimatePresence></div>; })}</div></section></Reveal>
 
-      <Reveal><section className="mt-32 grid gap-8 overflow-hidden rounded-[2rem] border border-brand-300/60 bg-white shadow-panel lg:grid-cols-[0.95fr_1.05fr]"><div className="p-8 sm:p-12 lg:p-16"><p className="eyebrow">A CLEARER NEXT STEP</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">Launch your data engineering workspace today.</h2><p className="mt-5 max-w-xl leading-7 text-slate-600">Test ingestion pipelines, inspect data transformations, and experience the full capability of the DataSculpt platform.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><EditorialButton href="/dashboard/" icon={<ArrowUpRight size={17} />}>Launch Workspace & Ops Center</EditorialButton><Button href="/contact/" variant="ghost">Schedule Architecture Review <ArrowRight size={15} /></Button></div></div><div className="relative min-h-[300px] bg-cover bg-center" aria-hidden="true" style={{ backgroundImage: "linear-gradient(135deg, rgba(249,223,112,.72), rgba(255,253,242,.12)), url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80')" }}><div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/70 bg-white/80 p-5 text-sm font-semibold text-slate-800 backdrop-blur-md">Trusted data. Better decisions. Stronger AI foundations.</div></div></section></Reveal>
+      <Reveal><section className="mt-32 grid gap-8 overflow-hidden rounded-[2rem] border border-brand-300/60 bg-white shadow-panel lg:grid-cols-[0.95fr_1.05fr]"><div className="p-8 sm:p-12 lg:p-16"><p className="eyebrow">A CLEARER NEXT STEP</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-5xl">Launch your data engineering workspace today.</h2><p className="mt-5 max-w-xl leading-7 text-slate-600">Test ingestion pipelines, inspect data transformations, and experience the full capability of the DataSculpt platform.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><EditorialButton href="/dashboard/" target="_blank" rel="noopener noreferrer" icon={<ArrowUpRight size={17} />}>Launch Workspace & Ops Center</EditorialButton><Button href="/contact/" variant="ghost">Schedule Architecture Review <ArrowRight size={15} /></Button></div></div><div className="relative min-h-[300px] bg-cover bg-center" aria-hidden="true" style={{ backgroundImage: "linear-gradient(135deg, rgba(249,223,112,.72), rgba(255,253,242,.12)), url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80')" }}><div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/70 bg-white/80 p-5 text-sm font-semibold text-slate-800 backdrop-blur-md">Trusted data. Better decisions. Stronger AI foundations.</div></div></section></Reveal>
     </div>
   );
 }
@@ -289,7 +291,7 @@ function ProductChapter({ product, index, reducedMotion }: { product: Product; i
             </ul>
             <p className="mt-7 max-w-lg border-l-2 border-brand-400 pl-4 text-sm leading-6 text-slate-500">{product.note}</p>
             <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
-              <Button href={dashboardHref} variant="primary" className="text-xs">
+              <Button href={dashboardHref} target="_blank" rel="noopener noreferrer" variant="primary" className="text-xs">
                 Launch {cleanName} in Workspace <ArrowUpRight size={14} />
               </Button>
               <Link href="/contact/" className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 transition hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">
@@ -315,7 +317,7 @@ function ProductChapterVisual({ product, reducedMotion, dashboardHref }: { produ
           <Icon size={22} className="text-brand-600" />
         </div>
         <VisualContent id={product.id} />
-        <Link href={dashboardHref} className="group inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-900 transition-colors">
+        <Link href={dashboardHref} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-900 transition-colors">
           <CircleCheck size={17} />
           <span>Launch interactive module in Workspace</span>
           <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

@@ -37,7 +37,7 @@ export function Challenges() {
                 Complexity is the cost of disconnected data.
               </h2>
               <p className="mt-5 max-w-md text-base leading-7 text-[#e2e8f0]">
-                Your teams should be building what comes next — not repeatedly
+                Your teams should be building what comes next not repeatedly
                 preparing the same information.
               </p>
               <div className="mt-auto rounded-xl border border-[#d97706]/40 bg-[#0f172a]/90 p-5 backdrop-blur-md">

@@ -11,10 +11,24 @@ import { WorkspaceShell } from '@/components/dashboard/WorkspaceShell';
 export function AppFrame({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const workspaceRoute = pathname === '/account/' || pathname === '/account' || pathname.startsWith('/dashboard');
+  const authRoute = pathname.startsWith('/auth');
   const overlays = <><CookieConsentBanner /><AIChatbot /></>;
 
   if (workspaceRoute) {
     return <><WorkspaceProvider><WorkspaceShell>{children}</WorkspaceShell></WorkspaceProvider>{overlays}</>;
+  }
+
+  if (authRoute) {
+    return (
+      <>
+        <main className="relative min-h-screen overflow-hidden bg-slate-950 flex flex-col justify-center">
+          <div className="pointer-events-none absolute inset-0 bg-hero-radial" />
+          <div className="grid-fade pointer-events-none absolute inset-0 opacity-20" />
+          {children}
+        </main>
+        <CookieConsentBanner />
+      </>
+    );
   }
 
   return <><Navbar /><main className="relative min-h-screen overflow-hidden bg-slate-950"><div className="pointer-events-none absolute inset-0 bg-hero-radial" /><div className="grid-fade pointer-events-none absolute inset-0 opacity-20" />{children}</main><Footer />{overlays}</>;
