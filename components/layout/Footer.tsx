@@ -36,7 +36,7 @@ const socialLinks = [
   {
     icon: <FaYoutube size={24} />,
     name: "Youtube",
-    url: "https://www.youtube.com/@datasculpt1",
+    url: "https://www.youtube.com/@datasculpt01",
   },
   {
     icon: <FaXTwitter size={24} />,
